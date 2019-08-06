@@ -1,0 +1,306 @@
+﻿1. Criar um banco de dados no MySQL.
+
+a) Inicie os aplicativos Apache e MySQL através do XAMPP.
+
+b) No navegador carregue a URL http://localhost/phpmyadmin.
+
+c) Crie um banco de dados chamado cadastro.
+
+d) Crie uma tabela chamada alunos com base no seguinte comando SQL
+
+CREATE TABLE alunos(
+      id INTEGER AUTO_INCREMENT PRIMARY KEY,
+      matricula INTEGER NOT NULL,
+      nome VARCHAR(255) NOT NULL
+);
+
+e) Insira alguns registros na tabela, utilizando os comandos SQL a seguir.
+
+INSERT INTO alunos(matricula, nome) VALUES (20161001, 'JOSE');
+INSERT INTO alunos(matricula, nome) VALUES (20161002, 'MARIA');
+INSERT INTO alunos(matricula, nome) VALUES (20161003, 'PEDRO');
+
+
+
+2. Configurar o NetBeans para acessar o GitHub.
+
+a) Acesse a url https://github.com/jrsmjr/ADS020 e clique na opção Fork para copiar o repositório para sua conta.
+
+b) Abra o aplicativo NetBeans IDE.
+
+c) No menu Equipe->Git escolha a opção Clonar. Preencha as informações:
+
+URL: https://github.com/seu_usuario/ADS020.git
+Usuário:
+Senha:
+
+d) Prossiga selecionando a ramificação master. Em seguida, selecione um diretório de destino e finalize o assistente. 
+
+e) Na caixa de diálogo exibida acione Criar Projeto. Selecione a categoria Java e o projeto Aplicação Java.
+
+f) Prossiga definindo o nome Atividade01 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque o item Criar Classe Principal e finalize o assistente.
+
+g) Importe a biblioteca JDBC para MySQL clicando com o botão direito sobre Bibliotecas.
+
+
+
+3. Criar a classe Aluno de um Cadastro de Alunos.
+
+a) Crie um pacote modelo.entidades clicando com o botão direito sobre Pacotes de Código-fonte.
+
+b) Dentro do pacote crie uma classe Aluno que implemente a interface Serializable.
+
+c) Dentro da classe, defina os atributos id (int), matricula (int) e nome (String).
+
+d) Defina métodos getter e setter para todos atributos (Dica: pressionar ALT+Insert, selecionar Getters e Setters e marcar todos atributos).
+
+
+
+4. Criar a classe de conexão com banco de dados.
+
+a) Crie o pacote de classes chamado modelo.persistencia.
+
+b) Dentro do pacote crie uma classe DadosException que herde da classe Exception.
+
+c) Sobrescreva os construtores Exception(String Message) e Exception(String Message, Throwable cause). (Dica: pressionar ALT+Insert, selecionar Construtor e marcar os construtores com os mesmos parâmetros).
+
+d) Crie uma classe ConexaoBD no pacote modelo.persistencia.
+
+e) Defina um atributo estático conexao do tipo Connection (Dica: pressione CTRL+SHIFT+I para importar o pacote java.sql.Connection).
+
+f) Defina o método estático getConexao sem parâmetro que retorna uma Connection e lance a exceção DadosException (Dica: public static Connection getConexao() throws DadosException.
+
+g) Implemente o método getConexao para carregar o driver "com.mysql.jdbc.Driver" e criar uma conexão com o banco de dados.
+
+if (conexao == null) { 
+   Class.forName(driver);
+   conexao = DriverManager.getConnection(uri, usuario, senha); 
+}
+
+return conexao; 
+
+h) Trate as exceções ClassNotFoundException e SQLException para lançar uma exceção DadosException.
+
+try {
+   // codigo do item g)
+} catch (ClassNotFoundException ex) {
+  throw new DadosException("Erro ao carregar JDBC!");
+} catch (SQLException ex) {
+  throw new DadosException("Erro ao conectar MySQL!");
+}
+
+i) Adicione os arquivos no git local e faça o commit com o comentário "Adicionando ConexaoBD em Atividade04".
+
+
+
+5. Criar a classe DAO para entidade Aluno.
+
+a) Dentro do pacote modelo.persistencia crie uma interface DAO que recebe um parâmetro genérico T.
+
+public interface DAO<T> {
+
+}
+
+b) Defina o método listar sem parâmetro, que retorna uma lista de T e lance a exceção DadosException (Dica: List<T> listar() throws DadosException;).
+
+c) Defina o método incluir que recebe como parâmetro T, sem retorno e que lance a exceção DadosException (Dica: void incluir(T entidade) throws DadosException;).
+
+d) Defina o método alterar que recebe como parâmetro T, sem retorno e que lance a exceção DadosException.
+
+e) Defina o método excluir que recebe como parâmetro um int, sem retorno e lance a exceção DadosException.
+
+f) Defina o método consultar que recebe como parâmetro um int, que retorna uma instância de T e lance a exceção DadosException (Dica: T consultar(int id) throws DadosException;).
+
+g) Crie uma classe AlunoDAO que implementa a interface DAO<Cliente> no pacote modelo.persistencia (Dica: Pressione ALT+Insert e selecione implementar métodos).
+
+public class AlunoDAO implements DAO<Cliente> {
+
+}
+
+h) Implemente o método listar que retorna uma lista de alunos que foram lidos do banco de dados, utilizando a API JDBC. 
+
+String sql = "SELECT * FROM ALUNOS";
+Connection conexao = ConexaoBD.getConexao();
+Statement comando = conexao.createStatement();
+ResultSet resultado = comando.executeQuery(sql);
+
+while (resultado.next()) {
+   Aluno aluno = new Aluno();
+   aluno.setId(resultado.getInt(1));
+   aluno.setMatricula(resultado.getInt(2));
+   aluno.setNome(resultado.getString(3));
+   lista.add(aluno);
+}
+
+i) Trate a exceção SQLException para lançar uma exceção DadosException com a mensagem "Erro ao listar alunos!".
+
+List<Aluno> lista = new ArrayList<Aluno>();
+ 
+try {
+   // codigo do item h)
+} catch (SQLException ex) {
+  throw new DadosException("Erro ao listar alunos!");
+}
+
+return lista;
+
+j) Implemente o método incluir que recebe como parâmetro um aluno acrescentando-o no banco de dados, utilizando a API JDBC.
+
+String sql = "INSERT INTO ALUNOS(MATRICULA, NOME) VALUES(?,?)";
+Connection conexao = ConexaoBD.getConexao();
+PreparedStatement comando = conexao.preparedStatement(sql);
+comando.setInt(1, aluno.getMatricula());
+comando.setString(2, aluno.getNome());
+comando.executeUpdate();
+
+k) Trate a exceção SQLException para lançar uma exceção DadosException com a mensagem "Erro ao incluir aluno!".
+
+try {
+   // codigo do item j)
+} catch (SQLException ex) {
+  throw new DadosException("Erro ao incluir aluno!");
+}
+
+l) Implemente o método alterar que recebe como parâmetro um aluno alterando-o no banco de dados, utilizando a API JDBC.
+
+String sql = "UPDATE ALUNOS SET MATRICULA=?, NOME=? WHERE ID=?";
+Connection conexao = ConexaoBD.getConexao();
+PreparedStatement comando = conexao.preparedStatement(sql);
+comando.setInt(1, aluno.getMatricula());
+comando.setString(2, aluno.getNome());
+comando.setInt(3, aluno.getId());
+comando.executeUpdate();
+
+m) Trate a exceção SQLException para lançar uma exceção DadosException com a mensagem "Erro ao alterar aluno!".
+
+n) Implemente o método excluir que recebe como parâmetro um código identificador do aluno excluindo-o do banco de dados, utilizando a API JDBC.
+
+String sql = "DELETE FORM ALUNOS WHERE ID=?";
+Connection conexao = ConexaoBD.getConexao();
+PreparedStatement comando = conexao.preparedStatement(sql);
+comando.setInt(1, id);
+comando.executeUpdate();
+
+o) Trate a exceção SQLException para lançar uma exceção DadosException com a mensagem "Erro ao excluir aluno!".
+
+p) Implemente o método consultar que recebe como parâmetro um código identificador e retorna o cliente consultando no banco de dados, utilizando a API JDBC.
+
+String sql = "SELECT * FROM ALUNOS WHERE ID=?";
+Connection conexao = ConexaoBD.getConexao();
+PreparedStatement comando = conexao.preparedStatement(sql);
+comando.setInt(1, id);
+ResultSet resultado = comando.executeQuery();
+if (resultado.next()) {
+  aluno.setId(resultado.getInt(1));
+  aluno.setMatricula(resultado.getInt(2));
+  aluno.setNome(resultado.getString(3));
+}
+
+q) Trate a exceção SQLException para lançar uma exceção DadosException com a mensagem "Erro ao consultar aluno!".
+
+Aluno aluno = new Aluno();
+
+try {
+   // codigo do item p)
+} catch (SQLException ex) {
+  throw new DadosException("Erro ao consultar aluno");
+}
+
+return aluno;
+
+r) Adicione os arquivos no git local e faça o commit com o comentário "Adicionando DAO e AlunoDAO em Atividade04".
+
+
+
+6. Criar a classe BO para entidade Aluno. 
+
+a) Dentro do pacote modelo crie uma classe NegocioException que herde da classe Exception.
+
+b) Sobrescreva os construtores Exception(String Message) e Exception(String Message, Throwable cause) na classe NegocioExeption (Dica: pressionar ALT+Insert, selecionar Construtor e marcar os construtuores com os mesmos parâmetros).
+
+c) Crie uma interface BO que recebe um parâmetro T (Dica: BO<T>) no pacote modelo.
+
+d) Defina o método validar que recebe como parâmetro T e lança a exceção NegocioException (Dica: void validar(T entidade) throws NegocioException;).
+
+e) Defina o método listar sem parâmetro, que retorna uma lista de T e lance a exceção NegocioException.
+
+f) Defina o método incluir que recebe como parâmetro T, sem retorno e que lance a exceção NegocioException.
+
+g) Defina o método alterar que recebe como parâmetro T, sem retorno e que lance a exceção NegocioException
+
+h) Defina o método excluir que recebe como parâmetro T, sem retorno e lance a exceção NegocioException.
+
+i) Defina o método consultar que recebe como parâmetro T, que retorna uma instância de T e lance a exceção NegocioException.
+
+j) Crie uma classe AlunoBO que implemente a interface BO<Aluno>.
+
+k) Na implementação do método validar da classe AlunoBO, valide se os campos matrícula e nome foram preenchidos. Se algum não foi preenchido lance uma exceção NegocioException com a mensagem "Campo obrigatório X não informado!".
+
+if (aluno.getMatricula() == 0) {
+  throw new NegocioException("Campo obrigatório MATRÍCULA não informado!");
+}
+
+if (aluno.getNome().isEmpty()) {
+  throw new NegocioException("Campo obrigatório NOME não informado!");
+}
+
+l) Na implementação do método listar, crie uma instância de AlunoDAO e chame seu método lista. Caso a resposta seja uma lista vazia lance uma exceção NegocioException com a mensagem "Nenhum aluno cadastrado!". Caso o método listar da classe AlunoDAO lance uma exceção DadosException repasse-a como a causa de uma exceção NegocioException (Dica: throw new NegocioException(mensagem, excecao).
+
+List<Aluno> lista = new ArrayList<Aluno>();
+AlunoDAO dao = new AlunoDAO();
+
+try {
+  lista = dao.listar();
+  if (lista.isEmpty()) {
+    throw new NegocioException("Nenhum aluno cadastrado!");
+  }
+} catch (DadosException ex) {
+  throw new NegocioException("Ocorreu um erro", ex);
+}
+
+return lista;
+
+m) Na implementação do método consultar, crie uma instância de AlunoDAO e chame seu método consultar. Caso a resposta seja nula lance uma exceção NegocioException com a mensagem "Aluno não encontrado!". Caso o método consultar da classe AlunoDAO lance uma exceção DadosException repasse-a como a causa de uma exceção NegocioException.
+
+Aluno aluno = new Aluno();
+AlunoDAO dao = new AlunoDAO();
+
+try {
+  aluno = dao.consultar(entidade.getId());
+  if (aluno.getId() == 0) {
+    throw new NegocioException("Aluno não encontrado!");
+  }
+} catch (DadosException ex) {
+  throw new NegocioException("Ocorreu um erro", ex);
+}
+
+return aluno;
+
+n) Na implementação do método incluir, valide a instância de Aluno. Em seguida, crie uma instância de AlunoDAO e chame seu método incluir de AlunoDAO. Caso o método incluir da classe AlunoDAO lance uma exceção DadosException repasse-a como a causa de uma exceção NegocioException.
+
+validar(entidade);
+AlunoDAO dao = new AlunoDAO();
+
+try {
+  dao.incluir(entidade);
+} catch (DadosException ex) {
+  throw new NegocioException("Ocorreu um erro", ex);
+}
+
+o) Na implementação do método alterar, chame o método consultar de AlunoBO. Em seguida, valide a instância de Aluno. Por fim, crie uma instância de AlunoDAO e chame seu método alterar. Caso o método alterar da classe AlunoDAO lance uma exceção DadosException repasse-a como a causa de uma exceção NegocioException.
+
+consultar(entidade);
+validar(entidade);
+AlunoDAO dao = new AlunoDAO();
+
+try {
+  dao.alterar(entidade);
+} catch (DadosException ex) {
+  throw new NegocioException("Ocorreu um erro", ex);
+}
+
+p) Na implementação do método excluir, chame o método consultar de AlunoBO. Em seguida, crie uma instância de AlunoDAO e chame seu método excluir. Caso o método excluir da classe AlunoDAO lance uma exceção DadosException repasse-a como a causa de uma exceção NegocioException.
+
+q) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade01".
+
+r) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto.
