@@ -89,8 +89,6 @@ try {
   throw new DadosException("Erro ao conectar MySQL!");
 }
 
-i) Adicione os arquivos no git local e faça o commit com o comentário "Adicionando ConexaoBD em Atividade04".
-
 
 
 5. Criar a classe DAO para entidade Aluno.
@@ -207,8 +205,6 @@ try {
 }
 
 return aluno;
-
-r) Adicione os arquivos no git local e faça o commit com o comentário "Adicionando DAO e AlunoDAO em Atividade04".
 
 
 
