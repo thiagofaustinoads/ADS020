@@ -70,7 +70,7 @@ e) Defina um atributo estático conexao do tipo Connection (Dica: pressione CTRL
 
 f) Defina o método estático getConexao sem parâmetro que retorna uma Connection e lance a exceção DadosException (Dica: public static Connection getConexao() throws DadosException.
 
-g) Implemente o método getConexao para carregar o driver "com.mysql.jdbc.Driver" e criar uma conexão com o banco de dados. A uri é "jdbc:mysql://localhost/cadastro".
+g) Implemente o método getConexao para carregar o driver "com.mysql.jdbc.Driver" e criar uma conexão com o banco de dados. A uri é "jdbc:mysql://localhost/cadastro". O usuário é "root" e a senha "".
 
 if (conexao == null) { 
    Class.forName(driver);
