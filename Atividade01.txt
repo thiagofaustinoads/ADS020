@@ -109,9 +109,9 @@ e) Defina o método excluir que recebe como parâmetro um int, sem retorno e lan
 
 f) Defina o método consultar que recebe como parâmetro um int, que retorna uma instância de T e lance a exceção DadosException (Dica: T consultar(int id) throws DadosException;).
 
-g) Crie uma classe AlunoDAO que implementa a interface DAO<Cliente> no pacote modelo.persistencia (Dica: Pressione ALT+Insert e selecione implementar métodos).
+g) Crie uma classe AlunoDAO que implementa a interface DAO<Aluno> no pacote modelo.persistencia (Dica: Pressione ALT+Insert e selecione implementar métodos).
 
-public class AlunoDAO implements DAO<Cliente> {
+public class AlunoDAO implements DAO<Aluno> {
 
 }
 
