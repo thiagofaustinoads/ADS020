@@ -176,7 +176,7 @@ n) Implemente o método excluir que recebe como parâmetro um código identifica
 String sql = "DELETE FORM ALUNOS WHERE ID=?";
 Connection conexao = ConexaoBD.getConexao();
 PreparedStatement comando = conexao.prepareStatement(sql);
-comando.setInt(1, entidade.getId());
+comando.setInt(1, id);
 comando.executeUpdate();
 
 o) Trate a exceção SQLException para lançar uma exceção DadosException com a mensagem "Erro ao excluir aluno!".
