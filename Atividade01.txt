@@ -173,7 +173,7 @@ m) Trate a exceção SQLException para lançar uma exceção DadosException com 
 
 n) Implemente o método excluir que recebe como parâmetro um código identificador do aluno excluindo-o do banco de dados, utilizando a API JDBC.
 
-String sql = "DELETE FORM ALUNOS WHERE ID=?";
+String sql = "DELETE FROM ALUNOS WHERE ID=?";
 Connection conexao = ConexaoBD.getConexao();
 PreparedStatement comando = conexao.prepareStatement(sql);
 comando.setInt(1, id);
