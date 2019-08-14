@@ -1,0 +1,116 @@
+﻿1. Criar um servlet para acompanhar seu ciclo de vida.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
+
+c) Prossiga definindo o nome Atividade04 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar.
+
+d) Escolha o servidor Apache Tomcat como ambiente de execução. Deixe desmarcado todos os frameworks e finalize o assistente.
+
+e) Crie um pacote servlets clicando com o botão direito sobre Pacotes de Código-fonte.
+
+f) Dentro do pacote crie um servlet acionando no menu Arquivo->Novo Arquivo. Selecione a categoria Java e o tipo Classe Java. 
+
+g) Defina o nome CicloVidaServlet ao servlet e finalize o assistente.
+
+h) Faça a classe CicloVidaServlet extender a classe HttpServlet. Em seguida, pressione ALT+INSERT e acione Substituir Método...
+
+i) Marque os métodos init() e destroy() da classe GenericServlet, e o método doGet() da classe HttpServlet. Em seguida, acione Gerar.
+
+j) No corpo do método init() imprima a mensagem "Iniciando CicloVidaServlet...".
+
+k) No corpo do método destroy() imprima a mensagem "Finalizando CicloVidaServlet...".
+
+l) No corpo do método doGet() imprima a mensagem "Executando CicloVidaServlet...".
+
+m) No menu Executar acione a opção Executar Projeto. Foi aberto o navegador exibindo a página inicial?
+
+n) Acesse a URL localhost:8080/Atividade04/CicloVidaServlet. Qual foi o resultado?
+
+o) Acrescente na linha acima da definição classe a anotação @WebServlet(name = "CicloVidaServet", urlPatterns = "/CicloVidaServlet")
+
+p) Recarrega a URL algumas vezes no navegador. Que mensagens foram exibidas na aba Saída/Apache Tomcat ou TomEE do NetBeans?
+
+q) Interrompa a execução do Tomcat na aba Saída. Foi exibida a mensagem "Finalizando CicloVidaServlet..."?
+
+
+
+2. Criar um servlet para tratar métodos GET e POST.
+
+a) Com o botão direito sobre o pacote servlets, escolha a opção Novo->Servlet.
+
+b) Defina o nome OlaMundoServlet ao servlet e finalize o assistente.
+
+c) Altere o método processRequest() do servlet para que seja exibido "Olá Mundo!" como título principal.
+
+out.println("<h1>Olá Mundo!</h1>");
+
+d) No menu Executar acione a opção Executar Projeto e acesse a URL localhost:8081/Atividade04/OlaMundoServlet pelo navegador.
+
+e) Altere o método processRequest() do servlet para que seja verificado se um parâmetro nome foi passado na requisição HTTP. Se foi exiba "Olá " + nome + "!" como título principal. Caso contrário continue exibindo "Olá Mundo!".
+
+String nome = request.getParameter("nome");
+if (nome != null && nome.isEmpty() == false) {
+    out.println("<h1>Olá " + nome + "!</h1>");
+} else {
+    out.println("<h1>Olá Mundo!</h1>");
+}
+
+f) No arquivo index.html crie um formulário HTML contendo um campo de texto nome e um botão Enviar. Atribua o valor "OlaMundoServlet" a propriedade action do formulário.
+
+<form action="OlaMundoServlet">
+  <input type="text" name="nome" size="20"/>
+  <button type="submit">Enviar</button>
+</form>
+
+g) Acesse a URL http://localhost:8080/Atividade04 pelo navegador. Preencha o campo de texto e acione Enviar. Qual o foi o resultado?
+
+h) Recarregue a página inicial. Não preencha o campo de texto e acione Enviar. Qual o foi o resultado?
+
+i) Acrescente a propriedade method ao formulário e atribua o valor "post". Recarregue a página inicial e tente submeter o formulário. Qual o foi o resultado?
+
+j) Altere o método processRequest() do servlet para que retorne também um link Voltar para a página inicial. 
+
+out.println("<a href=" + response.encodeURL(request.getContextPath()+"/index.html") + ">Voltar</a>");
+
+k) Recarregue a página inicial e submeta a formulário. O link Voltar foi exibido pelo servlet?
+
+l) Altere o método doGet() do servlet para retornar para a página inicial.
+
+response.sendRedirect(request.getContextPath()+"/index.html");
+
+m) Acesse a URL localhost:8081/Atividade04/OlaMundoServlet pelo navegador. Qual foi o resultado?
+
+n) Interrompa a execução do Tomcat na aba Saída/Apache Tomcat ou TomEE do NetBeans.
+
+
+
+3. Criar um servlet para tratar sessão de usuário.
+
+a) Crie um servlet SessaoServlet no pacote servlets.
+
+b) No método processRequest() declare no método uma variável session inicializando com a sessão do usuário (Dica.: request.getSession()).
+
+HttpSession session = request.getSession();
+
+c) Altere o método processRequest() do servlet para que seja exibido o ID da sessão.
+
+out.println(session.getId());
+
+d) Ainda no método processRequest() verifique se um parâmetro nome foi passado na requisição HTTP. Se foi guarde na sessão do usuário.
+
+String nome = request.getParameter("nome");
+if (nome != null && nome.isEmpty() == false) {
+	session.setAttribute("nome", nome);
+}
+
+e) Ainda no método processRequest() exiba o valor do atributo nome salvo na sessão do usuário.
+
+out.println("Nome salvo na sessão: " + session.getAttribute("nome"));
+
+f)
+
+o) Adicione os arquivos no git local e faça o commit com o comentário "Criando Atividade04".
+
+p) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto.
