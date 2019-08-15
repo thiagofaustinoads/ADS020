@@ -46,7 +46,7 @@ c) Altere o método processRequest() do servlet para que seja exibido "Olá Mund
 
 out.println("<h1>Olá Mundo!</h1>");
 
-d) No menu Executar acione a opção Executar Projeto e acesse a URL localhost:8081/Atividade04/OlaMundoServlet pelo navegador.
+d) No menu Executar acione a opção Executar Projeto e acesse a URL localhost:8080/Atividade04/OlaMundoServlet pelo navegador.
 
 e) Altere o método processRequest() do servlet para que seja verificado se um parâmetro nome foi passado na requisição HTTP. Se foi exiba "Olá " + nome + "!" como título principal. Caso contrário continue exibindo "Olá Mundo!".
 
@@ -96,21 +96,25 @@ HttpSession session = request.getSession();
 
 c) Altere o método processRequest() do servlet para que seja exibido o ID da sessão.
 
-out.println(session.getId());
+out.println("SESSION_ID=" + session.getId());
 
-d) Ainda no método processRequest() verifique se um parâmetro nome foi passado na requisição HTTP. Se foi guarde na sessão do usuário.
+d) Ainda no método processRequest() verifique se um parâmetro nome foi passado na requisição HTTP. Se foi guarde na sessão do usuário como o atributo nome.
 
 String nome = request.getParameter("nome");
 if (nome != null && nome.isEmpty() == false) {
-	session.setAttribute("nome", nome);
+  session.setAttribute("nome", nome);
 }
 
 e) Ainda no método processRequest() exiba o valor do atributo nome salvo na sessão do usuário.
 
 out.println("Nome salvo na sessão: " + session.getAttribute("nome"));
 
-f)
+f) Execute o projeto e acesse a URL localhost:8080/Atividade04/SessaoServlet. Qual foi o resultado?
 
-o) Adicione os arquivos no git local e faça o commit com o comentário "Criando Atividade04".
+g) Acesse a URL acrescentando o parâmetro nome (Ex.: localhost:8080/Atividade04/SessaoServlet?nome=Jose). Qual foi o resultado?
 
-p) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto.
+h) Acesse novamente a URL localhost:8080/Atividade04/SessaoServlet. Qual foi o resultado?
+
+i) Adicione os arquivos no git local e faça o commit com o comentário "Criando Atividade04".
+
+j) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto.
