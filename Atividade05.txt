@@ -1,22 +1,30 @@
-﻿1. Criar um servlet para listar alunos.
+1. Criar um servlet para listar alunos.
 
-a) Abra o projeto Atividade04 no NetBeans.
+a) Abra o aplicativo NetBeans IDE.
 
-b) Crie um pacote controle clicando com o botão direito sobre Pacotes de Código-fonte.
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
 
-c) Crie um servlet ListarAlunoServlet dentro do pacote controle.
+c) Prossiga definindo o nome Atividade04 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar.
 
-d) Faça o padrão de URL do servlet ser "/aluno" (Dica: urlPatterns = {"/aluno"}).
+d) Escolha o servidor Apache Tomcat como ambiente de execução. Deixe desmarcado todos os frameworks e finalize o assistente.
 
-e) Apague o corpo do método doGet() para que seja implementado a listagem de alunos. 
+e) Importe o pacote Atividade01.jar que foi gerado na Atividade01.
 
-f) Dentro do metodo declare uma variável lista do tipo List<Aluno> e inicialize-a com uma instância de ArrayList<Aluno>.
+f) Crie um pacote controle clicando com o botão direito sobre Pacotes de Código-fonte.
 
-g) Declare uma variável bo e inicialize-a com uma instância de AlunoBO.
+g) Crie um servlet ListarAlunoServlet dentro do pacote controle.
 
-h) Chame o método listar() da variável bo e armazene o retorno na variável lista.
+h) Faça o padrão de URL do servlet ser "/aluno" (Dica: urlPatterns = {"/aluno"}).
 
-i) Repasse a exceção NegocioException como ServletException.
+i) Apague o corpo do método doGet() para que seja implementado a listagem de alunos. 
+
+j) Dentro do metodo declare uma variável lista do tipo List<Aluno> e inicialize-a com uma instância de ArrayList<Aluno>.
+
+k) Declare uma variável bo e inicialize-a com uma instância de AlunoBO.
+
+l) Chame o método listar() da variável bo e armazene o retorno na variável lista.
+
+m) Repasse a exceção NegocioException como ServletException.
 
 try {
    lista = bo.listar();
@@ -24,15 +32,15 @@ try {
    throw new ServletException("", NegocioException);
 }
  
-j) Altere o conteúdo da resposta HTTP para um texto HTML com a codificação UTF-8.
+n) Altere o conteúdo da resposta HTTP para um texto HTML com a codificação UTF-8.
 
 response.setContentType("text/html;charset=UTF-8");
 
-k) Crie uma variável out do tipo PrintWriter e inicialize-a a partir do método getWriter() do variável response.
+o) Crie uma variável out do tipo PrintWriter e inicialize-a a partir do método getWriter() do variável response.
 
 PrintWriter out = response.getWriter();
 
-l) Utilize o método println() da variável out para imprimir a seguinte página HTML (Dica: siga a mesma lógica do método processRequest()).
+p) Utilize o método println() da variável out para imprimir a seguinte página HTML (Dica: siga a mesma lógica do método processRequest()).
 
 <!DOCTYPE html>
 <html>
@@ -51,7 +59,7 @@ l) Utilize o método println() da variável out para imprimir a seguinte página
 </body>
 </html>
 
-m) Faça um laço que percorra os itens da variável lista e imprima os dados dos alunos (Dica: insira o código entre a linha que imprime </tr> e a linha que imprime </table>.
+q) Faça um laço que percorra os itens da variável lista e imprima os dados dos alunos (Dica: insira o código entre a linha que imprime </tr> e a linha que imprime </table>.
 
 out.println("</tr>");
 
@@ -66,13 +74,13 @@ for(Aluno aluno: lista) {
 
 out.println("</table>");
 
-n) Apague o corpo do método doPost() e lance uma exceção ServletException com a mensagem "Método não suportado".
+r) Apague o corpo do método doPost() e lance uma exceção ServletException com a mensagem "Método não suportado".
 
 throw new ServletException("Método não suportado");
 
-o) Apague o método processRequest() do servlet ListarAlunoServlet.
+s) Apague o método processRequest() do servlet ListarAlunoServlet.
 
-p) No menu Executar acione a opção Executar Projeto e acesse a URL localhost:8081/Atividade04/aluno pelo navegador. Foi exibida uma lista dos alunos cadastrados?
+t) No menu Executar acione a opção Executar Projeto e acesse a URL localhost:8081/Atividade04/aluno pelo navegador. Foi exibida uma lista dos alunos cadastrados?
 
 
 
@@ -142,9 +150,7 @@ n) Apague o método processRequest() do servlet IncluirAlunoServlet.
 o) Inclua um link na listagem de alunos que carregue o servlet IncluirAlunoServlet (Dica: imprima o link entre a linha que imprime h1 e a linha que imprime table).
 
 out.println("<h1>Listagem de Alunos</h1>");
-
 out.println("<a href='" + response.encodeURL("/aluno/incluir") + "'>Incluir</a>");
-
 out.println("<table>");
 
 p) Recarregue a listagem de alunos no navegador e acione o link Incluir. Foi exibido o formulário de incluir aluno?
@@ -161,23 +167,23 @@ b) Faça o padrão de URL do servlet ser "/aluno/alterar".
 
 c) Apague o corpo do método doGet() para que seja implementado a alteração de alunos. 
 
-e) Dentro do método declare uma variável aluno e inicialize-a com uma instância de Aluno.
+d) Dentro do método declare uma variável aluno e inicialize-a com uma instância de Aluno.
 
-f) Declare uma variável id e inicialize-a com o valor do parâmetro id da requisição HTTP.
+e) Declare uma variável id e inicialize-a com o valor do parâmetro id da requisição HTTP.
 
 int id = Integer.parseInt(request.getParameter("id"));
 
-g) Declare uma variável bo e inicialize-a com uma instância de AlunoBO.
+f) Declare uma variável bo e inicialize-a com uma instância de AlunoBO.
 
-h) Chame o método consultar() da variável bo passando como parâmetro a variável id. Armazene o retorno na variável aluno.
+g) Chame o método consultar() da variável bo passando como parâmetro a variável id. Armazene o retorno na variável aluno.
 
-i) Repasse a exceção NegocioException como ServletException.
+h) Repasse a exceção NegocioException como ServletException.
 
-j) Altere o conteúdo da resposta HTTP para um texto HTML com a codificação UTF-8.
+i) Altere o conteúdo da resposta HTTP para um texto HTML com a codificação UTF-8.
 
-k) Crie uma variável out do tipo PrintWriter e inicialize-a a partir do método getWriter() da variável response.
+j) Crie uma variável out do tipo PrintWriter e inicialize-a a partir do método getWriter() da variável response.
 
-l) Utilize o método println() da variável out para imprimir a seguinte página HTML (Dica: utilize os métodos getter da classe Aluno para obter os valores de id, matricula e nome aos respectivos campos do formulário).
+k) Utilize o método println() da variável out para imprimir a seguinte página HTML (Dica: utilize os métodos getter da classe Aluno para obter os valores de id, matricula e nome aos respectivos campos do formulário).
 
 <!DOCTYPE html>
 <html>
@@ -202,21 +208,21 @@ l) Utilize o método println() da variável out para imprimir a seguinte página
 </body>
 </html>
 
-m) Apague o corpo do método doPost() para que seja implementado a alteração de alunos. 
+l) Apague o corpo do método doPost() para que seja implementado a alteração de alunos. 
 
-n) Dentro do método declare uma variável aluno e inicialize-a com uma instância de Aluno.
+m) Dentro do método declare uma variável aluno e inicialize-a com uma instância de Aluno.
 
-o) Atribua valor as propriedades id, matricula e nome de aluno a partir dos parâmetros da requisição HTTP.
+n) Atribua valor as propriedades id, matricula e nome de aluno a partir dos parâmetros da requisição HTTP.
 
 aluno.setId(Integer.parseInt(request.getParameter("id"));
 aluno.setMatricula(Integer.parseInt(request.getParameter("matricula"));
 aluno.setNome(request.getParameter("nome");
 
-p) Declare uma variável bo e inicialize-a com uma instância de AlunoBO.
+o) Declare uma variável bo e inicialize-a com uma instância de AlunoBO.
 
-q) Chame o método alterar() da variável bo passando como parâmetro a variável aluno.
+p) Chame o método alterar() da variável bo passando como parâmetro a variável aluno.
 
-r) Repasse a exceção NegocioException como ServletException.
+q) Repasse a exceção NegocioException como ServletException.
 
 try {
    bo.alterar(aluno);
@@ -224,17 +230,17 @@ try {
    throw new ServletException("", NegocioException);
 }
 
-s) Faça o método doPost redirecionar para a listagem de alunos.
+r) Faça o método doPost redirecionar para a listagem de alunos.
 
-t) Apague o método processRequest() do servlet AlterarAlunoServlet.
+s) Apague o método processRequest() do servlet AlterarAlunoServlet.
 
-u) Na listagem de alunos faça o link Alterar referenciar o servlet AlterarAlunoServlet passando o parâmetro id.
+t) Na listagem de alunos faça o link Alterar referenciar o servlet AlterarAlunoServlet passando o parâmetro id.
 
 out.println("<td><a href='" + response.encodeURL("/aluno/alterar?id=") + aluno.getId() + "'>Alterar</a>");
 
-v) Recarregue a listagem de alunos no navegador e acione o link Alterar. Foi exibido o formulário de alterar aluno?
+u) Recarregue a listagem de alunos no navegador e acione o link Alterar. Foi exibido o formulário de alterar aluno?
 
-w) Preencha o formulário e acione Salvar. Qual foi o resultado?
+v) Preencha o formulário e acione Salvar. Qual foi o resultado?
 
 
 
