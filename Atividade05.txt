@@ -4,7 +4,7 @@ a) Abra o aplicativo NetBeans IDE.
 
 b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
 
-c) Prossiga definindo o nome Atividade04 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar.
+c) Prossiga definindo o nome Atividade05 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar.
 
 d) Escolha o servidor Apache Tomcat como ambiente de execução. Deixe desmarcado todos os frameworks e finalize o assistente.
 
@@ -80,7 +80,7 @@ throw new ServletException("Método não suportado");
 
 s) Apague o método processRequest() do servlet ListarAlunoServlet.
 
-t) No menu Executar acione a opção Executar Projeto e acesse a URL localhost:8081/Atividade04/aluno pelo navegador. Foi exibida uma lista dos alunos cadastrados?
+t) No menu Executar acione a opção Executar Projeto e acesse a URL localhost:8081/Atividade05/aluno pelo navegador. Foi exibida uma lista dos alunos cadastrados?
 
 
 
@@ -278,6 +278,6 @@ out.println("<a href='" + response.encodeURL("/aluno/excluir?id=") + aluno.getId
 
 l) Recarregue a listagem de alunos no navegador e acione o link Excluir. Em seguida, confirme a exclusão. Qual foi o resultado?
 
-m) Adicione os arquivos no git local e faça o commit com o comentário "Adicionando servlets em Atividade04".
+m) Adicione os arquivos no git local e faça o commit com o comentário "Adicionando servlets em Atividade05".
 
 n) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto. 
