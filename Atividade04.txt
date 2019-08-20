@@ -1,4 +1,4 @@
-﻿1. Criar um servlet para acompanhar seu ciclo de vida.
+1. Criar um servlet para acompanhar seu ciclo de vida.
 
 a) Abra o aplicativo NetBeans IDE.
 
@@ -14,9 +14,9 @@ f) Dentro do pacote crie um servlet acionando no menu Arquivo->Novo Arquivo. Sel
 
 g) Defina o nome CicloVidaServlet ao servlet e finalize o assistente.
 
-h) Faça a classe CicloVidaServlet extender a classe HttpServlet. Em seguida, pressione ALT+INSERT e acione Substituir Método...
+h) Faça a classe CicloVidaServlet estender a classe HttpServlet. 
 
-i) Marque os métodos init() e destroy() da classe GenericServlet, e o método doGet() da classe HttpServlet. Em seguida, acione Gerar.
+i) Pressione ALT+INSERT e acione Substituir Método... e marque os métodos init() e destroy() da classe GenericServlet, e o método doGet() da classe HttpServlet. Em seguida, acione Gerar.
 
 j) No corpo do método init() imprima a mensagem "Iniciando CicloVidaServlet...".
 
@@ -28,9 +28,9 @@ m) No menu Executar acione a opção Executar Projeto. Foi aberto o navegador ex
 
 n) Acesse a URL localhost:8080/Atividade04/CicloVidaServlet. Qual foi o resultado?
 
-o) Acrescente na linha acima da definição classe a anotação @WebServlet(name = "CicloVidaServet", urlPatterns = "/CicloVidaServlet")
+o) Acrescente na linha acima da definição classe a anotação @WebServlet(name = "CicloVidaServet", urlPatterns = "/CicloVidaServlet") .
 
-p) Recarrega a URL algumas vezes no navegador. Que mensagens foram exibidas na aba Saída/Apache Tomcat ou TomEE do NetBeans?
+p) Recarregue a URL algumas vezes no navegador. Que mensagens foram exibidas na aba Saída/Apache Tomcat ou TomEE do NetBeans?
 
 q) Interrompa a execução do Tomcat na aba Saída. Foi exibida a mensagem "Finalizando CicloVidaServlet..."?
 
