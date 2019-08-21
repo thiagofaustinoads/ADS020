@@ -80,7 +80,7 @@ l) Altere o método doGet() do servlet para retornar para a página inicial.
 
 response.sendRedirect(request.getContextPath()+"/index.html");
 
-m) Acesse a URL localhost:8081/Atividade04/OlaMundoServlet pelo navegador. Qual foi o resultado?
+m) Acesse a URL localhost:8080/Atividade04/OlaMundoServlet pelo navegador. Qual foi o resultado?
 
 n) Interrompa a execução do Tomcat na aba Saída/Apache Tomcat ou TomEE do NetBeans.
 
