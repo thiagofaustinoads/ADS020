@@ -1,0 +1,115 @@
+1. Criar um servlet para efetuar login.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
+
+c) Prossiga definindo o nome Atividade06 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar.
+
+d) Escolha o servidor Apache Tomcat como ambiente de execução. Deixe desmarcado todos os frameworks e finalize o assistente.
+
+e) Crie um pacote servlets clicando com o botão direito sobre Pacotes de Código-fonte.
+
+f) Crie um servlet LoginServlet dentro do pacote controle.
+
+g) Faça o padrão de URL do servlet ser "/login".
+
+h) Apague o corpo do método doGet() para que seja implementado a tela de login. 
+
+i) Altere o conteúdo da resposta HTTP para um texto HTML com a codificação UTF-8.
+
+j) Crie uma variável out do tipo PrintWriter e inicialize-a a partir do método getWriter() da variável response.
+
+k) Utilize o método println() da variável out para imprimir a seguinte página HTML.
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sistema Acadêmico</title>
+</head>
+<body> 
+	<h1>Efetuar Login</h1>
+        <form action="/login" method="post">
+		<div>
+			<label>Matrícula:</label>
+			<input type="text" name="matricula" size="15" value="">
+		</div>
+		<div>
+			<label>Senha:</label>
+			<input type="password" name="senha" size="15" value="">
+		</div>
+		<input type="submit" value="Entrar"/>
+	</form>
+</body>
+</html>
+
+l) Apague o corpo do método doPost() para que seja implementado a ação login. 
+
+m) Declare uma varíavel matricula do tipo String e atribua o valor do parâmetro matricula da requisição (String matricula = request.getParameter("matricula");).
+
+n) Declare uma varíavel senha do tipo String e atribua o valor do parâmetro senha da requisição.
+
+o) Se a matrícula e a senha estão vazias então faça o método doPost() redirecionar para o login. Caso contrário faça o método do Post() armazenar a matrícula na sessão e redirecionar para a página inicial.
+
+if (matricula == null || senha == null) {
+   response.sendRedirect(request.getContextPath() + "/login");
+else {
+   HttpSession sessao = request.getSession();
+   sessao.setAttribute("autenticado", true);
+   response.sendRedirect(request.getContextPath() + "/");
+}   
+
+p) No menu Executar acione a opção Executar Projeto e acesse a URL localhost:8080/Atividade06/login pelo navegador.
+
+q) Não preencha o formulário e acione Entrar. Qual foi o resultado?
+
+r) Preencha o formulário e acione Entrar. Qual foi o resultado?
+
+
+
+2. Criar um servlet para efetuar logout.
+
+a) Crie um servlet LogoutServlet dentro do pacote controle.
+
+b) Faça o padrão de URL do servlet ser "/logout".
+
+c) Apague o corpo do método doGet() para que seja implementado a ação logout.
+
+d) Faça o método doGet() invalidar a sessão e redirecionar para o login.
+
+HttpSession session = request.getSession();
+session.invalidate();
+response.sendRedirect(request.getContextPath() + "/login");
+
+e) Acesse a URL localhost:8080/Atividade06/logout pelo navegador. Qual foi o resultado?
+
+
+
+3. Criar um filtro para login.
+
+a) Crie um filtro LoginFilter acionando o botão direito sobre o pacote controle.
+
+b) Faça o padrão de URL do filtro ser "/*" e finaliza o assistente.
+
+c) Apague todo o conteúdo da classe LoginFilter. Pressione ALT+INSERT e acione Implementar Método. Marque todos os métodos.
+
+d) Faça o método doFilter() verificar se existe o atributo de sessão user. Se existir faça o filtro aceitar a requisição. Caso contrário faça o método doFilter() redirecionar para o login. 
+
+HttpServletRequest req = (HttpServletRequest) request;
+HttpServletResponse resp = (HttpServletResponse) response;
+HttpSession session = req.getSession();
+
+if (session.getAttribute("autenticado") != null || 
+     req.getRequestURI().equals(req.getContextPath()+"/login")) {
+	chain.doFilter(req, resp);
+} else {
+	resp.sendRedirect(req.getContextPath() + "/login");
+}
+
+e) Acesse a URL localhost:8080/Atividade06/ pelo navegador. Qual foi o resultado?
+
+f) Efetue o login na aplicação e acesse novamente a página inicial. Qual foi o resultado?
+
+g) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade06".
+
+h) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto.
