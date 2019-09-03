@@ -1,0 +1,163 @@
+1. Criar um cadastro de aluno com JSF .
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
+
+c) Prossiga definindo o nome Atividade10 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. 
+
+d) Escolha o servidor Apache Tomcat como ambiente de execução. Marque o framework JavaServer Faces e finalize o assistente.
+
+e) Importe o pacote Atividade01.jar que foi gerado na Atividade01. Importe também a biblioteca Driver JDBC do MySQL.
+
+f) No menu Executar acione a opção Executar Projeto. Foi aberto o navegador exibindo a página inicial?
+
+g) Crie um pacote managedbeans clicando com o botão direito sobre Pacotes de Código-fonte.
+
+h) Dentro do pacote managebeans crie um managed bean acionando no menu Arquivo->Novo Arquivo. Selecione a categoria JavaServer Faces e o tipo Bean Gerenciado JSF. Defina o nome LoginMB ao managed bean e finalize o assistente.
+
+i) Dentro de LoginMB defina os atributos usuario e senha ambos do tipo String com seus respectivos métodos getter e setter.
+
+j) Defina também o método login que retorna uma String. Faça o método validar se os atributos usuário e senha foram preenchidos, crie um atributo de sessão autenticado e retorne para a página lista. Caso contrário retorne para o login.
+
+if (this.usuario != null && this.senha != null) {
+    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpSession sessao = request.getSession();
+    sessao.setAttribute("autenticado", true);
+    return "lista";
+} else {
+    return "login";
+}
+
+k) Crie uma página JSF chamada login clicando com o botão direito sobre Páginas Web e acionando a opção Novo->Página JSF.
+
+l) Na página login.xhtml, construa um formulário contento os campos usuário e senha, e o botão utilizando os componentes JSF. Acrescentes aos campos um validador de preechimento obrigatório. Faça o botão disparar a ação login de objeto loginMB.
+
+<h:form>
+   <h:outputLabel value="Usuário"/>
+   <h:inputText size="20" value="#{loginMB.usuario}" required="true" validatorMessage="Campo usuário é obrigatório!"/>
+   <h:outputLabel value="Senha"/>
+   <h:inputSecret size="20" value="#{loginMB.senha}" required="true" validatorMessage="Campo senha é obrigatório!"/>
+   <h:commandButton value="Entrar" action="#{loginMB.login}"/>
+</h:form>
+
+m) Adicione um filtro LoginFilter para exibir a página login.xhtml caso o não esteja autenticado.
+
+if (sessao.getAttribute("autenticado") != null || 
+    req.getRequestURI().equals(req.getContextPath()+"/faces/login.xhtml")) {
+    chain.doFilter(req, res);
+} else {
+    res.sendRedirect(req.getContextPath() + "/faces/login.xhtml");
+}        
+
+n) Recarregue a página index.xhtml no navegador. Qual foi o resultado?
+
+
+
+2. Criar página JSF listagem de alunos.
+
+a) Dentro do pacote managebeans crie um managed bean chamado AlunoMB.
+
+b) Dentro do managed bean declare um atributo aluno inicializando com uma instância de Aluno. Declare tambéms seus métodos getter e setter.
+
+c) Crie um método listar() que deve retornar uma List<Aluno>. Faça o método retornar o resultado do método listar() da classe AlunoBO (Dica: veja o método doGet() da classe ListarAluno).
+
+d) Crie uma página JSF chamada lista clicando com o botão direito sobre Páginas Web e acionando a opção Novo->Página JSF.
+
+e) Acrescente no corpo da página um dataTable para listar os alunos cadastrados no sistema a partir do método listar() de AlunoMB.
+
+<h:dataTable value="#{alunoMB.listar()}" var="aluno">
+  <f:facet name="header">Lista de Alunos</f:facet>
+  <h:column>
+    <f:facet name="header">Matrícula</f:facet>
+    <h:outputText value="#{aluno.matricula}" />
+  </h:column>
+  <h:column>
+    <f:facet name="header">Nome</f:facet>
+    <h:outputText value="#{aluno.nome}" />
+  </h:column>
+  <h:column>
+    <f:facet name="header">Ações</f:facet>
+  </h:column>  
+</h:dataTable>
+</h:form>
+
+f) Carregue a página lista.xhtml no navegador. Foi exibida a página listar?
+
+
+
+2. Criar página JSF cadastro de alunos.
+
+a) Crie um método incluir() na classe alunoMB que deve retornar a página cadastro.
+
+b) Crie um método salvar() na classe alunoMB que deve chamar o método inserir() de AlunoBO e ao final retorne para a pagína lista.xhtml.
+
+c) Crie uma página JSF chamada cadastro clicando com o botão direito sobre Páginas Web e acionando a opção Novo->Página JSF.
+
+d) Dentro da página cadastro construa um formulário contento os campos matrícula e nome, o botão Salvar e o link Desistir utilizando os componentes JSF. Acrescentes aos campos um validador de preechimento obrigatório e o validador maior que 0 para o campo matrícula. Faça o botão Salvar disparar a ação salvar do objeto loginMB e o link Desistir retorna para a página lista.xhtml.
+
+<h:form>
+   <h:panelGrid columns = "2">   
+   <h:inputHidden value="#{alunoMB.aluno.id}"/>
+   <h:outputLabel value = "Matricula" />
+   <h:inputText value="#{alunoMB.aluno.matricula}"/>
+   <h:outputLabel value = "Nome" />
+   <h:inputText value="#{alunoMB.aluno.nome}"/>
+   </h:panelGrid>  
+   <h:commandButton value = "Salvar" action="#{alunoMB.salvar}"/>
+   <h:link value = "Desistir" outcome="lista"/>
+   <h:paneGrid>
+</h:form>
+
+e) Dentro da página lista acrescente um link para chamar a ação incluir de alunoMB.
+
+<h:commandLink value="Incluir" action="#{alunoMB.incluir}">
+
+f) Recarregue a página lista.xhtml no navegador e acione o link Incluir. Qual foi o resultado?
+
+
+
+3. Criar funcionalidade Alterar Alunos.
+
+a) Crie um método alterar() na classe AlunoMB que deve retornar a página cadastro. Faça o método chamar o método consultar() de AlunoBO passando o parametro da requisição.
+
+Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+String id = params.get("id");
+aluno.setId(Interger.valueOf(id));
+
+b) Altere o método salvar() para verificar se o atributo ID de aluno é maior que zero. Se for faça chamar o método alterar() de AlunoBO. Caso contrário, faça chamar o método incluir() de AlunoBO.
+
+c) Altere a página lista.xhml acrescentando um link para a ação alterar do alunoMB.
+
+  <h:column>
+    <f:facet name="header">Ações</f:facet>
+    <h:commandLink value="Alterar" action="#{alunoMB.alterar}">
+       <f:param name="id" value="#{aluno.id}" />
+    </h:link>
+  </h:column>  
+
+d) Recarregue a página lista.xhtml no navegador e acione o link Alterar. Qual foi o resultado?
+
+
+
+4. Criar funcionalidade Excluir Alunos.
+
+a) Crie um método excluir() na classe AlunoMB que deve retornar a página lista. Faça o método chamar o método excluir() de AlunoBO passando o parâmetro da requisição.
+
+b) Altere a página lista.xhml acrescentando um link para a ação alterar do alunoMB.
+
+  <h:column>
+    <f:facet name="header">Ações</f:facet>
+    <h:commandLink value="Alterar" action="#{alunoMB.alterar}">
+       <f:param name="id" value="#{aluno.id}" />
+    </h:link>
+    <h:commandLink value="Excluir" action="#{alunoMB.excluir}">
+       <f:param name="id" value="#{aluno.id}" />
+    </h:link>
+</h:column>
+
+c) Recarregue a página lista.xhtml no navegador e acione o link Excluir. Qual foi o resultado?
+
+d) Adicione os arquivos no git local e faça o commit com o comentário "Criando o projeto Atividade10".
+
+e) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto.
