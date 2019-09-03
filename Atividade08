@@ -1,0 +1,93 @@
+1. Criar um projeto JSF no NetBeans.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
+
+c) Prossiga definindo o nome Atividade08 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. 
+
+d) Escolha o servidor Apache Tomcat como ambiente de execução. Marque o framework JavaServer Faces e finalize o assistente.
+
+e) No menu Executar acione a opção Executar Projeto. Foi aberto o navegador exibindo a página inicial?
+
+f) Crie um pacote managedbeans clicando com o botão direito sobre Pacotes de Código-fonte.
+
+g) Dentro do pacote crie um managed bean acionando no menu Arquivo->Novo Arquivo. Selecione a categoria JavaServer Faces e o tipo Bean Gerenciado JSF.
+
+h) Defina o nome EscopoMB ao managed bean e finalize o assistente.
+
+i) Na classe EscopoMB defina o atributo privado valor (int) inicializando com 1.
+
+j) Implemente os métodos getValor() e setValor() para o atributo valor.
+
+k) Implemente um método recarregar() que incremente o atributo valor e retorne a string vazia.
+
+l) Altere o conteúdo da página index.xhml para exibir o valor do managed bean que é carregado pelo.
+
+    <h:head>
+        <title>JSF</title>
+    </h:head>
+    <h:body>
+        <h3>Testando Escopo do Managed Bean</h3>
+        <h:form>
+            <p><h:outputText value="O valor salvo no ManagedBean é "/>
+                <h:outputText value="#{escopoMB.valor}"/></p>
+            <h:commandLink value="Recarregar" action="#{escopoMB.recarregar}"/>
+        </h:form>
+    </h:body>
+
+m) Recarregue a página index.xhtml no navegador. Qual o valor exibido?
+
+n) Acione o link Recarregar exibido na página. Qual o valor exibido? Se você tentar de novo o valor muda?
+
+o) Altere o escopo do managed bean de @RequestScoped para @SessionScoped.
+
+p) Recarregue a página index.xhtml no navegador e acione o link Recarregar várias vezes. Qual foi o resultado?
+
+
+
+2. Implementar a funcionalidade de login usando JSF.
+
+a) Dentro de Páginas Web crie uma página JSF login acionando no menu Arquivo->Novo Arquivo. Selecione a categoria JavaServer Faces e o tipo Página JSF.
+
+b) Acrescente no corpo da página um formulário (Dica: <h:form>).
+
+c) Dentro do formulário acrescente um gride de duas colunas (Dica: <h:panelGrid columns="2">).
+
+d) Dentro do gride acrescente um rótulo Matrícula associado ao campo inputMatricula (Dica: <h:outputLabel value="Matrícula" for="inputMatricula"/>)
+
+e) Acrescente um campo de texto para ler a matrícula do usuário. Atribua o id inputMatricula para ele (Dica: <h:inputText id="inputMatricula"/>).
+
+f) Acrescente um rótulo Senha associado ao campo inputSenha.
+
+g) Acrescente um campo de texto secreto para ler a senha do usuário. Atribua o id inputSenha para ele.
+
+h) Acrescente um botão submit com o valor Entrar (Dica: <h:commandButton value="Entrar"/>).
+
+i) Acrescente um link com o valor Esqueci a senha (Dica: <h:outputLink><h:outputText value="Esqueci a senha"/></h:outputLink>
+
+j) Abra a página login no navegador. Preenche o formulário de login e acione Entrar. O que acontece com a página?
+
+k) Crie um managed bean LoginMB.
+
+l) Defina os atributos matricula e senha como string e implemente seus métodos getter e setter.
+
+m) Implemente o método entrar que valide se a matrícula é igual a 2019000 e a senha igual á 123456 e retorne a string "index". Caso contrário, crie uma mensagem "Login inválido!".
+
+FacesContext context = FacesContext.getCurrentInstance();
+FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login inválido!");
+context.addMessage(null, mensagem);
+
+n) Na página login acrescente a propriedade value aos campos inputMatricula associando com os respectivos atributos de LoginMB (Dica: value="#{loginMB.matricula}" e value="#{loginMB.senha}").
+
+o) Exiba a mensagem de erro na página login (Dica: <h:messages errorStyle="color: red"/>).
+
+p) Acrescente a ação entrar do LoginMB para o botão Entrar do formulário (Dica: action="#{loginMB.entrar}").
+
+q) Recarregue a página login e teste fazendo o login passar. Qual foi o resultado?
+
+r) Recarregue a página login e teste fazendo o login não passar. Qual foi o resultado?
+
+s) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto web Atividade08".
+
+t) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto.
