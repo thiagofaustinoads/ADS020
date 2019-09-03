@@ -1,0 +1,68 @@
+1. Trabalhar navegação de páginas no JSF.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
+
+c) Prossiga definindo o nome Atividade09 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. 
+
+d) Escolha o servidor Apache Tomcat como ambiente de execução. Marque o framework JavaServer Faces e finalize o assistente.
+
+e) No menu Executar acione a opção Executar Projeto. Foi aberto o navegador exibindo a página inicial?
+
+criar uma página lista
+
+criar uma página cadastro
+
+criar um managendbean;
+
+fazer a navegação implícita
+
+fazer a navegação explícita
+
+
+
+2. Trabalhar com conversores e validadores JSF.
+
+a) Adicione uma página JSF chamada prepara.
+
+b) Adicione um h:form na página prepara.xhtml. Dentro dele defina dois componentes h:inputText e um h:commandButton.
+<h:form>
+<h:inputText size="20"/>
+<h:inputText size="20"/>
+<h:commandButton value="Enviar"/>
+</h:form>
+
+c) Acrescente o conversor javax.faces.Integer no primeiro componente h:inputText e o conversor javax.faces.DateTime no segundo.
+<h:inputText size="20" converter="javax.faces.Integer"/>
+<h:inputText size="20" converter="java.faces.DateTime"/>
+
+d) Recarregue a página prepara no navegador. Preencha valores nos campos e acione o botão. Qual foi o resultado?
+
+e) Defina a mensagem "Erro ao conveter para inteiro" ao primeiro conversor e "Erro ao converter para data/hora" no segundo conversor.
+<h:inputText size="20" converter="javax.faces.Integer" conveterMessage="Erro ao conveter para número"/>
+<h:inputText size="20" converter="java.faces.DateTime" converterMessage="Erro ao converter para data/hora"/>
+
+f) Recarregue a página prepara no navegador. Preencha valores nos campos e acione o botão. Qual foi o resultado?
+
+g) Troque os conversores padrão pela tags f:converterNumber e f:conveterDateTime. Aplique as máscaras #,##0.00 e dd/MM/yyyy. 
+<h:inputText size="20"><f:convertNumber type="currency" locale="pt_BR" pattern="#,##0.00" /></h:inputText>
+<h:inputText size="20"><f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy" /></h:inputText>
+
+h) Recarregue a página prepara no navegador. Preencha valores nos campos e acione o botão. Qual foi o resultado?
+
+i) Acrescente o validador f:validateDoubleRange ao primeiro h:inputText aceitar valores entre 100,00 e 1000,00 e o validador f:validateRequired ao segundo h:inputText ser obrigatório.
+<h:inputText size="20"><f:validateDoubleRange minimum = "100.00" maximum = "1000.00" /></h:inputText>
+<h:inputText size="20"><f:validateRequired/></h:inputText>
+
+j) Recarregue a página prepara no navegador. Preencha valores nos campos e acione o botão. Qual foi o resultado?
+
+k) Defina a mensagem "O valor deve estar entre 100,00 e 1000,00" ao primeiro validador e "O campo é obrigatório" no segundo validador.
+<h:inputText size="20" validatorMessage="O valor deve estar entre 100,00 e 1000,00" ><f:validateDoubleRange minimum = "100.00" maximum = "1000.00" /></h:inputText>
+<h:inputText size="20" validatorMessage="O campo é obrigatório"><f:validateRequired/></h:inputText>
+
+l) Recarregue a página prepara no navegador. Preencha valores nos campos e acione o botão. Qual foi o resultado?
+
+m) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto web Atividade09".
+
+n) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto.
