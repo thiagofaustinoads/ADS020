@@ -1,0 +1,125 @@
+1. Trabalhar com scriptlets no JSP.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
+
+c) Prossiga definindo o nome Atividade07 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. 
+
+d) Escolha o servidor Apache Tomcat como ambiente de execução. Deixe desmarcado todos os frameworks e finalize o assistente.
+
+e) Altere o corpo da página index.jsp declarando uma variável msg do tipo String e inicialize-a com "Olá Mundo!" (Dica: <%String msg="Olá Mundo!";%>).
+
+f) Exiba o valor da variável msg dentro da tag <h1> (Dica: <h1><%=msg%></<h1>).
+
+g) No menu Executar acione a opção Executar Projeto. Foi aberto o navegador exibindo a página inicial?  
+
+h) Dentro do corpo da página index.jsp declare uma variável data do tipo Date. Qual foi o resultado?
+
+i) Faça a importação do pacote java.util.Date utilizando a diretiva @page (Dica: <%@page import java.util.Date;%>).
+
+j) Exiba o valor da variável data dentro da tag <p>.
+
+k) Recarregue a página index.jsp no navegador. Qual foi o resultado?
+
+
+
+2. Trabalhar com diretivas do JSP
+
+a) Crie um JSP cabecalho.jsp clicando com o botão direito sobre Páginas Web. Altere o conteúdo do JSP para o seguinte código.
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+
+b) Crie um JSP rodape.jsp clicando com o botão direito sobre Páginas Web. Altere o conteúdo do JSP para o seguinte código.
+
+    </body>
+</html>
+
+c) Altere o conteúdo da página index.jsp incluindo o cabeçalho e o rodapé.
+
+<%@include file="cabecalho.jsp"%>
+
+<%String msg="Olá Mundo!";%>
+...
+<p><%=data%></<p>
+
+<%@include file="rodape.jsp"%>
+
+d) Recarregue a página index.jsp no navegador. Qual foi o resultado?
+
+e) Crie um JSP erro.jsp clicando com o botão direito sobre Páginas Web.
+
+f) Acrescente a diretiva @page para indicar que se trata de uma página de erro (Dica: <%@page isErrorPage="true"%>).
+
+g) Altere o corpo da página erro.jsp para exibir um título e um parágrafo contento a exceção.
+
+<h1>Deu Ruim!</h1>
+<p>Mensagem do erro: <%=exception.getMessage()%></p>
+
+h) Acrescente no corpo da página index.jsp uma linha de código para lançar uma exceção.
+
+<%int x = 12/0;%>
+
+i) Recarregue a página index.jsp no navegador. Qual foi o resultado?
+
+j) Acrescente no arquivo cabecalho.jsp diretiva @page para redirecionar a página de erro quando houver uma exceção Java (Dica: <%@page errorPage="erro.jsp"%>).
+
+k) Recarregue a página index.jsp no navegador. Qual foi o resultado?
+
+
+
+3. Trabalhar com Standard Actions do JSP
+
+a) Crie um pacote beans clicando com o botão direito sobre Pacotes de Códigos-fonte.
+
+b) No pacote beans crie uma classe Aluno que implemente a interface Serializable.
+
+c) Defina na classe Aluno os atributos matricula (int) e nome (String) bem como seus métodos getters e setters.
+
+d) Dentro da página index.jsp declare um bean aluno através da Standard Action <jsp:useBean>.
+
+<jsp:useBean id="aluno" class="beans.Aluno"/>
+
+e) Defina os atributos matricula e nome para o bean aluno através da Standard Action <jsp:setProperty>.
+
+<jsp:setProperty name="aluno" property="matricula" value="2016100"/>
+<jsp:setProperty name="aluno" property="nome" value="JOSE"/>
+
+f) Exiba os atributos do bean aluno através da Standard Action <jsp:getProperty>.
+
+<p>Os atributos do bean Aluno são: <jsp:getProperty name="aluno" property="matricula"/> e <jsp:getProperty name="aluno" property="nome"/></p>
+
+g) Recarregue a página index.jsp no navegador. Qual foi o resultado?
+
+
+
+4. Protegendo acesso a uma página JSP.
+
+a) Crie uma pasta visao dentro da pasta WEB-INF.
+
+b) Mova a pasta index.jsp para a pasta visao.
+
+c) Acesse a URL localhost:8080/Atividade07/WEB-INF/visao/index.jsp. Qual foi o resultado?
+
+d) Crie um pacote servlets clicando com o botão direito sobre Pacotes de Códigos-fonte.
+
+e) No pacote servlets crie um servlet chamado IndexServlet. 
+
+f) Faça o padrão de URL do servlet ser "/index".
+
+g) Altere o método doGet() de IndexServlet dispchar a requisição para a página index.jsp
+
+request.getRequestDispatcher("/WEB-INF/visao/index.jsp").forward(request, response);
+
+h) Acesse a URL localhost:8080/Atividade07/index pelo navegador. Qual foi o resultado?
+
+i) Adicione os arquivos no git local e faça o commit com o comentário "Criando Atividade07".
+
+j) Envie os arquivos versionados para o git remoto acionando a opção Expandir para Upstream do menu Equipe->Remoto.
