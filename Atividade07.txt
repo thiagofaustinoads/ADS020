@@ -104,7 +104,7 @@ g) Recarregue a página index.jsp no navegador. Qual foi o resultado?
 
 a) Crie uma pasta visao dentro da pasta WEB-INF.
 
-b) Mova a pasta index.jsp para a pasta visao.
+b) Mova as páginas JSP para a pasta visao.
 
 c) Acesse a URL localhost:8080/Atividade07/WEB-INF/visao/index.jsp. Qual foi o resultado?
 
