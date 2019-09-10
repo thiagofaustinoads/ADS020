@@ -10,15 +10,39 @@ d) Escolha o servidor Apache Tomcat como ambiente de execução. Marque o framew
 
 e) No menu Executar acione a opção Executar Projeto. Foi aberto o navegador exibindo a página inicial?
 
-criar uma página lista
+f) Dentro de Páginas Web crie uma página JSF lista acionando no menu Arquivo->Novo Arquivo. Selecione a categoria JavaServer Faces e o tipo Página JSF.
 
-criar uma página cadastro
+g) Adicione h:outputLink na página lista.xhtml. Faça o link chamar a página cadastro.xhtml.
 
-criar um managendbean;
+<h:outputLink value="cadastro.xhmlt">Cadastro</h:outputLink>
 
-fazer a navegação implícita
+h) Carregue a página lista.xhtml no navegador e acesse o link Cadastro. Qual foi o resultado?
 
-fazer a navegação explícita
+i) Dentro de Páginas Web crie uma página JSF cadastro acionando no menu Arquivo->Novo Arquivo. Selecione a categoria JavaServer Faces e o tipo Página JSF.
+
+j) Recarregue a página lista.xhtml no navegador e acesse o link Cadastro. Qual foi o resultado?
+
+k) Crie um pacote managedbeans clicando com o botão direito sobre Pacotes de Código-fonte.
+
+l) Dentro do pacote crie um managed bean CadastroMB acionando no menu Arquivo->Novo Arquivo. Selecione a categoria JavaServer Faces e o tipo Bean Gerenciado JSF.
+
+m) Dentro da classe CadastroMB implemente um método salvar sem parâmetros fazendo ele retornar uma string vazia.
+
+public String salvar() {
+   return '';
+}
+
+n) Dentro da página cadastro.xhtml adicione um h:form.
+
+o) Dentro do h:form adicione um h:commandButton. Faça o botão chamar o método cadastroMB.salvar.
+
+<h:commandButton action="#{cadastroMB.salvar}" value="Salvar"/>
+
+p) Carregue a página cadastro.xhtml no navegador e acesse o botão Salvar. Qual foi o resultado?
+
+q) Altere o método salvar() da classe CadastroMB fazendo ele retornar a string 'lista';
+
+r) Recarregue a página cadastro.xhtml no navegador e acesse o botão Salvar. Qual foi o resultado?
 
 
 
