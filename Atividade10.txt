@@ -6,7 +6,7 @@ b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java We
 
 c) Prossiga definindo o nome Atividade10 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. 
 
-d) Escolha o servidor Apache Tomcat como ambiente de execução. Marque o framework JavaServer Faces e finalize o assistente.
+d) Escolha o servidor Apache Tomcat como ambiente de execução. Marque o framework JavaServer Faces e o componente PrimeFaces finalize o assistente.
 
 e) Importe o pacote Atividade01.jar que foi gerado na Atividade01. Importe também a biblioteca Driver JDBC do MySQL.
 
@@ -34,11 +34,11 @@ k) Crie uma página JSF chamada login clicando com o botão direito sobre Págin
 l) Na página login.xhtml, construa um formulário contento os campos usuário e senha, e o botão utilizando os componentes JSF. Acrescentes aos campos um validador de preechimento obrigatório. Faça o botão disparar a ação login de objeto loginMB.
 
 <h:form>
-   <h:outputLabel value="Usuário"/>
-   <h:inputText size="20" value="#{loginMB.usuario}" required="true" validatorMessage="Campo usuário é obrigatório!"/>
-   <h:outputLabel value="Senha"/>
-   <h:inputSecret size="20" value="#{loginMB.senha}" required="true" validatorMessage="Campo senha é obrigatório!"/>
-   <h:commandButton value="Entrar" action="#{loginMB.login}"/>
+   <p:outputLabel value="Usuário"/>
+   <p:inputText size="20" value="#{loginMB.usuario}" required="true" validatorMessage="Campo usuário é obrigatório!"/>
+   <p:outputLabel value="Senha"/>
+   <p:inputSecret size="20" value="#{loginMB.senha}" required="true" validatorMessage="Campo senha é obrigatório!"/>
+   <p:commandButton value="Entrar" action="#{loginMB.login}"/>
 </h:form>
 
 m) Adicione um filtro LoginFilter para exibir a página login.xhtml caso o não esteja autenticado.
@@ -66,21 +66,20 @@ d) Crie uma página JSF chamada lista clicando com o botão direito sobre Págin
 
 e) Acrescente no corpo da página um dataTable para listar os alunos cadastrados no sistema a partir do método listar() de AlunoMB.
 
-<h:dataTable value="#{alunoMB.listar()}" var="aluno">
+<p:dataTable value="#{alunoMB.listar()}" var="aluno" paginator="true" rows="5" paginatorPosition="bottom">
   <f:facet name="header">Lista de Alunos</f:facet>
-  <h:column>
+  <p:column>
     <f:facet name="header">Matrícula</f:facet>
-    <h:outputText value="#{aluno.matricula}" />
-  </h:column>
-  <h:column>
+    <p:outputText value="#{aluno.matricula}" />
+  </p:column>
+  <p:column>
     <f:facet name="header">Nome</f:facet>
-    <h:outputText value="#{aluno.nome}" />
-  </h:column>
-  <h:column>
+    <p:outputText value="#{aluno.nome}" />
+  </p:column>
+  <p:column>
     <f:facet name="header">Ações</f:facet>
-  </h:column>  
-</h:dataTable>
-</h:form>
+  </p:column>  
+</p:dataTable>
 
 f) Carregue a página lista.xhtml no navegador. Foi exibida a página listar?
 
@@ -97,21 +96,21 @@ c) Crie uma página JSF chamada cadastro clicando com o botão direito sobre Pá
 d) Dentro da página cadastro construa um formulário contento os campos matrícula e nome, o botão Salvar e o link Desistir utilizando os componentes JSF. Acrescentes aos campos um validador de preechimento obrigatório e o validador maior que 0 para o campo matrícula. Faça o botão Salvar disparar a ação salvar do objeto loginMB e o link Desistir retorna para a página lista.xhtml.
 
 <h:form>
-   <h:panelGrid columns = "2">   
-   <h:inputHidden value="#{alunoMB.aluno.id}"/>
-   <h:outputLabel value = "Matricula" />
-   <h:inputText value="#{alunoMB.aluno.matricula}"/>
-   <h:outputLabel value = "Nome" />
-   <h:inputText value="#{alunoMB.aluno.nome}"/>
-   </h:panelGrid>  
-   <h:commandButton value = "Salvar" action="#{alunoMB.salvar}"/>
-   <h:link value = "Desistir" outcome="lista"/>
-   <h:paneGrid>
+   <p:panelGrid columns = "2">   
+   <p:inputHidden value="#{alunoMB.aluno.id}"/>
+   <p:outputLabel value = "Matricula" />
+   <p:inputText value="#{alunoMB.aluno.matricula}"/>
+   <p:outputLabel value = "Nome" />
+   <p:inputText value="#{alunoMB.aluno.nome}"/>
+   </p:panelGrid>  
+   <p:commandButton value = "Salvar" action="#{alunoMB.salvar}"/>
+   <p:link value = "Desistir" outcome="lista"/>
+   <p:paneGrid>
 </h:form>
 
 e) Dentro da página lista acrescente um link para chamar a ação incluir de alunoMB.
 
-<h:commandLink value="Incluir" action="#{alunoMB.incluir}">
+<p:commandLink value="Incluir" action="#{alunoMB.incluir}">
 
 f) Recarregue a página lista.xhtml no navegador e acione o link Incluir. Qual foi o resultado?
 
@@ -129,12 +128,12 @@ b) Altere o método salvar() para verificar se o atributo ID de aluno é maior q
 
 c) Altere a página lista.xhml acrescentando um link para a ação alterar do alunoMB.
 
-  <h:column>
+  <p:column>
     <f:facet name="header">Ações</f:facet>
-    <h:commandLink value="Alterar" action="#{alunoMB.alterar}">
+    <p:commandLink value="Alterar" action="#{alunoMB.alterar}">
        <f:param name="id" value="#{aluno.id}" />
-    </h:link>
-  </h:column>  
+    </p:link>
+  </p:column>  
 
 d) Recarregue a página lista.xhtml no navegador e acione o link Alterar. Qual foi o resultado?
 
@@ -146,15 +145,15 @@ a) Crie um método excluir() na classe AlunoMB que deve retornar a página lista
 
 b) Altere a página lista.xhml acrescentando um link para a ação alterar do alunoMB.
 
-  <h:column>
+  <p:column>
     <f:facet name="header">Ações</f:facet>
-    <h:commandLink value="Alterar" action="#{alunoMB.alterar}">
+    <p:commandLink value="Alterar" action="#{alunoMB.alterar}">
        <f:param name="id" value="#{aluno.id}" />
-    </h:link>
-    <h:commandLink value="Excluir" action="#{alunoMB.excluir}">
+    </p:link>
+    <p:commandLink value="Excluir" action="#{alunoMB.excluir}">
        <f:param name="id" value="#{aluno.id}" />
-    </h:link>
-</h:column>
+    </p:link>
+</p:column>
 
 c) Recarregue a página lista.xhtml no navegador e acione o link Excluir. Qual foi o resultado?
 
