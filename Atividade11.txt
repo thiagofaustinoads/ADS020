@@ -1,0 +1,102 @@
+1. Instalando o WildFly.
+
+a) Abra a pasta ADS020 localizada na Área de Trabalho.
+
+b) Crie um arquivo chamado cmd.bat na pasta ADS020. Ele deve conter as seguintes linhas.
+
+@ECHO OFF
+SET JAVA_HOME=C:\Program Files\Java\jdk1.X
+SET JBOSS_HOME=%~dp0WILDFLY
+SET PATH=%JAVA_HOME%\bin;%JBOSS_HOME%\bin;%PATH%;
+CMD.EXE
+
+c) Baixe o pacote wildfly-9.0.2.Final.zip disponível no endereço https://wildfly.org na pasta ADS020. Renome-a a pasta gerada pela extração do arquivo para WILDFLY.
+
+d) Execute o arquivo cmd.bat.
+
+e) Inicie o WildFly executando o comando standalone.bat.
+
+f) Abra um navegador e digite a url http://localhost:8080. Foi exibida a página do WildFly?
+
+g) Execute novamente o arquivo cmd.bat. Interrompa a execução do WildFly através do comando jboss-cli.bat.
+
+jboss-cli --connect --command=:shutdown
+
+
+
+2. Configurando o WildFly.
+
+a) Altere a porta do WildFly para 8090 editando o arquivo %JBOSS_HOME%\standalone\configuration\standalone.xml.
+
+<socket-binding name="http" port="${jboss.http.port:8090}"/>
+
+b) Inicie o WildFly. Em seguida, acesse a url http://localhost:8090. Foi exibida a página do WildFly?
+
+c) Tente acessar o Administrator Console atraves do link exibido na página do WildFly. Qual foi o resultado?
+
+d) Crie um usuário wildfly através do comando add-user.bat (Dica: siga as instruções da página do WildFly).
+
+e) Acesse novamente o Administrator Console e efetue login com o usuário criado. Foi exibida a página home?
+
+f) Escolha na página Home a opção Start em Deploy an Application. Implante o pacote Atividade03.war através da opção Add.
+
+g) Abra uma aba no navegador e acesso a url http://localhost:8090/Atividade03. Qual foi o resultado?
+
+h) Volte para a página Deployments e remova a aplicação Atividade03 (Dica: marque o pacote Atividade03.war e selecione Remove na combo).
+
+i) Abra o aplicativo Windows Explorer.
+
+j) Entre na pasta %JBOSS_HOME%\modules\system\layers\base\com e crie uma pasta mysql.
+
+k) Entre na pasta mysql e crie uma pasta main.
+
+l) Baixe o driver JDBC do MySQL a partir da URL https://github.com/jrsmjr/ADS020 e copie para pasta main.
+
+m) Dentro da pasta main crie um arquivo module.xml para registrar o driver JDBC. Ele deve conter o seguinte conteúdo.
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module xmlns="urn:jboss:module:1.1" name="com.mysql">
+<resources>
+<resource-root path="mysql-connector-java-5.1.23-bin.jar"/>
+</resources>
+<dependencies>
+<module name="javax.api"/>
+<module name="javax.transaction.api"/>
+<module name="javax.servlet.api" optional="true"/>
+</dependencies>
+</module>
+
+n) Acrescente o driver do MySQL na seção <drivers> do arquivo %JBOSS_HOME%\standalone\configuration\standalone.xml.
+
+<driver name="mysql" module="com.mysql">
+   <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+</driver>
+
+o) Pare a execução do WildFly e inicie ele novamente. Também inicie o MySQL através do XAMPP.
+
+p) Acesse a aplicação Adminstrator Console.
+
+q) Escolha na página Home a opção Star em Create a Datasource. Crie um datasource Non-XA para o banco cadastro criado no MySQL através da opção Subsystems->Datasources->Non-XA->Add.
+
+r) Defina os atributos Name e JNDI Name como sendo cadastroDS e java:/cadastroDS. Mantenha os valores padrão do driver JDBC. Defina na Connection URL igual a jdbc:mysql://localhost:3306/cadastro, Username igual root e Password vazio. Acione Test Connection para testar a conexão. Em caso de sucesso, finalize acionando Done.
+
+s) Pare a execução do WildFly.
+
+
+
+3. Integrando WildFly ao NetBeans.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Ferramentas->Servidores escolha a opção Adicionar Servidor.
+
+c) Na aba Serviços escolha o item WildFly Application Server. Avance para continuar. 
+
+d) Indique o caminho onde foi instalado o WildFly bem como o arquivo de configuração de domínio (Dica: pasta %JBOSS_HOME%\domain\configuration\domain.xml.
+
+e) Inicie o WildFly pelo NetBeans clicando com o botão direito sobre o servidor adicionado.
+
+f) Expanda o servidor WildFly para exibir as aplicações implantadas.
+
+g) Pare a execução do WildFly. 
