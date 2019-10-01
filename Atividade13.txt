@@ -4,7 +4,7 @@ a) Abra o aplicativo NetBeans IDE.
 
 b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java EE e o projeto Modulo EJB.
 
-c) Prossiga definindo o nome Atividade14 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque o item Criar Classe Principal e finalize o assistente.
+c) Prossiga definindo o nome Atividade13 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque o item Criar Classe Principal e finalize o assistente.
 
 d) No menu Arquivo escolha a opção Novo Arquivo. Selecione a Java e o tipo Interface. Defina o nome CalculadoraRemota a nova interface.
 
@@ -72,6 +72,6 @@ try {
 
 h) Clique com o botão direito sobre a classe CalculadoraClient e acione a opção Executar Arquivo. Qual foi o resultado?
 
-i) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade14".
+i) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade13".
 
 j) Envie os arquivos versionados para o git remoto.
