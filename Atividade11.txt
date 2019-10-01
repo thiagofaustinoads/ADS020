@@ -6,7 +6,7 @@ b) Crie um arquivo chamado cmd.bat na pasta ADS020. Ele deve conter as seguintes
 
 @ECHO OFF
 SET JAVA_HOME=C:\Program Files\Java\jdk1.X
-SET JBOSS_HOME=%~dp0WILDFLY
+SET JBOSS_HOME=C:\Users\SUA_MATRICULA\Desktop\JEE\WILDFLY
 SET PATH=%JAVA_HOME%\bin;%JBOSS_HOME%\bin;%PATH%;
 CMD.EXE
 
@@ -93,7 +93,7 @@ b) No menu Ferramentas->Servidores escolha a opção Adicionar Servidor.
 
 c) Na aba Serviços escolha o item WildFly Application Server. Avance para continuar. 
 
-d) Indique o caminho onde foi instalado o WildFly bem como o arquivo de configuração de domínio (Dica: pasta %JBOSS_HOME%\domain\configuration\domain.xml.
+d) Indique o caminho onde foi instalado o WildFly bem como o arquivo de configuração de domínio (Dica: pasta %JBOSS_HOME%\standalone\configuration\standalone.xml.
 
 e) Inicie o WildFly pelo NetBeans clicando com o botão direito sobre o servidor adicionado.
 
