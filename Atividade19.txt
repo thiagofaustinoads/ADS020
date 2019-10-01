@@ -1,0 +1,70 @@
+1. Criar um Serviço RESTful no NetBeans.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
+
+c) Prossiga definindo o nome Atividade19 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Finalize o assistente.
+
+d) Crie um pacote ws acionando o botão direito sobre Pacotes de código fonte.
+
+e) No menu Arquivo escolha a opção Novo Arquivo. Selecione a categoria WebServices e o tipo Web Services RESTful a partir dos Padrões. Selecione o padrão Recurso Raiz Simples. Defina o nome CalculadoraResource, o caminho calculadora e escolha o pacote rest.
+
+f) Declare o método somar que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método responder ao método GET, consumir e produzir um texto. Indique que os a e b serão do tipo queryparam.
+
+@GET
+@Consumes(MediaType.TEXT_PLAIN)
+@Produces(MediaType.TEXT_PLAIN)
+public int somar(@QueryParam(value="a") int a, @QueryParam(value="b") int b) {
+	return a + b;
+}
+
+g) Declare o método subtrair que recebe dois parâmetros inteiros e retorne um inteiro. Atribua ao método as anotações @POST e @Produces(MediaType.TEXT_PLAIN).
+
+h) Declare o método multiplicar que recebe dois parâmetros inteiros e retorne um inteiro. Atribua ao método as anotações @PUT e @Produces(MediaType.TEXT_PLAIN).
+
+i) Declare o método dividir que recebe dois parâmetros inteiros e retorne um inteiro. Atribua ao método as anotações @DELETE e @Produces(MediaType.TEXT_PLAIN).
+
+j) Clique com o botão direito sobre o projeto e acione a opção Executar Arquivo.
+
+k) Acesse a URL http://localhost:8080/Atividade19/webresources/calculadora?a=1&b=1. Qual foi o resultado.
+
+
+
+2) Criar um cliente do Serviço RESTful.
+
+a) No menu Arquivo escolha a opção Novo Arquivo. Selecione a categoria WebServices e o tipo Cliente RESTful Java. Defina o nome ClienteCalculadoraRS, selecione o recurso REST do projeto e defina o pacote cliente.
+
+b) Ajuste os métodos somar(), subtrair(), multiplicar() e dividir() da classe ClienteCalculadoraRS para receber os parâmetros a e b e tratando a resposta como String.
+
+public String somar(int a, int b) throws ClientErrorException {
+        WebTarget resource = webTarget;
+        return resource
+                .queryParam("a",a)
+                .queryParam("b",b)
+                .request(javax.ws.rs.core.MediaType.TEXT_PLAIN
+                ).get(String.class);
+    }
+
+c) Crie um pacote servlets acionando o botão direito sobre Pacotes de código fonte.
+
+d) Dentro do pacote crie um servlet acionando no menu Arquivo->Novo Arquivo. Selecione a categoria Web e o tipo Arquivo Servlet.
+
+e) Defina o nome CalculadoraServlet ao servlet e o contexto /calculadora. Finalize o assistente.
+
+f) Dentro do método processoRequest() crie uma variável servico inicializando com a instância de ClenteCalculadoraRS.
+        
+g) Chame cada um dos métodos da ClenteCalculadoraRS e imprima seu resultado.
+
+ out.println("2 + 2 é igual a " + calculadora.somar(2, 2) + "<br/>");
+ out.println("2 - 2 é igual a " + calculadora.subtrar(2, 2) + "<br/>");
+ out.println("2 x 2 é igual a " + calculadora.multiplicar(2, 2) + "<br/>");
+ out.println("2 / 2 é igual a " + calculadora.dividir(2, 2) + "<br/>");
+ 
+h) Interrompa o Wildfly limpando a pasta deployments. Execute novamente o projeto.
+
+i) Acione o servlet ClienteCalculadoraWS a partir da sua URL. Qual foi o resultado?
+
+j) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade19".
+
+k) Envie os arquivos versionados para o git remoto.

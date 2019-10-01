@@ -1,0 +1,123 @@
+1. Criar um bean de sessão sem estado.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java EE e o projeto Aplicação Corporativa (Enterprise).
+
+c) Prossiga definindo o nome Atividade15 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Usar Pasta Dedicada, se ela estiver selecionada.
+
+d) Prossiga escolhendo o servidor WildFly Application Server a como ambiente de execução. Defina o nome CarrinhoEJB ao módulo EJB e LojaVirtual ao módulo Web. Finalize o assistente.
+
+e) No módulo EJB crie um pacote chamado ejb para armazenar as classes dos session beans.
+
+f) No menu Arquivo escolha a opção Novo Arquivo. Selecione a Java e o tipo Interface. Defina o nome CarrinhoCompraLocal a nova interface.
+
+g) Faça a interface CarrinhoCompraLocal ser uma interface javax.ejb.Local (Dica: @Local).
+
+h) Declare o método adicionarItem sem retorno que recebe um parâmetros string. Faça o método lançar uma exceção javax.ejb.EJBException.
+
+public void adicionarItem(String item) throws EJBException;
+
+i) Declare o método listarItens que retorna uma List<String) sem parâmetros. Faça o método lançar uma exceção javax.ejb.EJBException.
+
+public List<String> listarItens() throws EJBException;
+
+j) No menu Arquivo escolha a opção Novo Arquivo. Selecione a Java EE e o tipo Bean de Sessão. 
+
+k) Defina o nome CarrinhoCompraStateless ao bean de sessão e marque o tipo Sem estado. Desmarque o tipo de interface e finalize o assistente.
+
+l) Faça a classe CarrinhoCompraStateless implementar a interface CarrinhoCompraLocal.
+
+@Stateless
+@Local(CarrinhoCompraLocal.class)
+CarrinhoCompraStateless implements CarrinhoCompraLocal {
+}
+
+m) Declare um atributo privado lista do tipo List<String> inicialiando-o com uma instância de ArrayList<String>.
+
+n) Pressine ALT+INSERT para implementar os métodos exigidos pela interface CarrinhoCompraLocal.
+
+o) Faça o método adicionarItem() inserir o parâmetro item na lista. Imprima a mensagem "Item " + item + " adicionado ao carrinho".
+
+p) Faça o método listarItens() retornar o atributo lista. Imprima a mensagem "Listando itens do carrinho".
+
+
+
+2. Criar uma aplicação web para chamar um bean de sessão.
+
+a) No módulo Web crie um pacote servlets clicando com o botão direito sobre Pacotes de Código-fonte.
+
+b) Dentro do pacote crie um servlet acionando no menu Arquivo->Novo Arquivo. Selecione a categoria Web e o tipo Arquivo Servlet. Defina o nome AdicionarItemCarrinhoServlet ao servlet e a url /carrinho/adicionar e finalize o assistente.
+
+c) Declare o atributo carrinho do tipo CarrinhoCompraLocal e faça com que ele seja injetado na classe AdicionarItemCarrinhoServlet.
+
+@EJB
+private CarrinhoCompraLocal carrinho.
+
+d) Altere o método processRequest() do servlet para que seja adicionado o carrinho um parâmetro que foi passado na requisição HTTP.
+
+String item = req.getAttribute("item");
+carrinho.adicionarItem(item);
+
+e) Faça o método processRequest() retornar os itens adicionados ao carrinho ou a mensagem "Nenhum adicionado ao carrinho".
+
+Lista<String> lista = carrinho.listarItens();
+
+if (lista.isEmpty()) {
+  out.println("<p>Nenhum adicionado ao carrinho</p>");
+} 
+
+for(String item : lista) {
+  out.println("<p>" + item + "</p>");
+}
+
+f) Execute o projeto Atividade15 no servidor de aplicação. Chame a url do servlet passando um item como parâmetro. Qual foi o resultado?
+
+g) Interrompa a execução do projeto.
+
+
+
+3. Criar um bean de sessão com estado.
+
+a) No módulo EJB acione o menu Arquivo escolha a opção Novo Arquivo. Selecione a Java EE e o tipo Bean de Sessão. 
+
+b) Defina o nome CarrinhoCompraStateful ao bean de sessão e marque o tipo com estado. Desmarque o tipo de interface e finalize o assistente.
+
+c) Faça a classe CarrinhoCompraStateful implementar a interface CarrinhoCompraLocal.
+
+@Stateful
+@Local(CarrinhoCompraLocal.class)
+CarrinhoCompraStateful implements CarrinhoCompraLocal {
+}
+
+d) Declare um atributo privado lista do tipo List<String> inicialiando-o com uma instância de ArrayList<String>.
+
+e) Pressine ALT+INSERT para implementar os métodos exigidos pela interface CarrinhoCompraLocal.
+
+f) Faça o método adicionarItem() inserir o parâmetro item na lista. Imprima a mensagem "Item " + item + " adicionado ao carrinho".
+
+g) Faça o método listarItens() retornar o atributo lista.
+
+h) Remova a anotaçao @EJB do atributo carrinho na classe AdicionarItemCarrinhoServlet.
+
+i) Acrescete no método processRequest() do servlet para que seja localizado o carrinho na sessão. Se ele não existe, localize-o pelo contexto java:global/Atividade15/CarrinhoCompraStateful!ejb.CarrinhoCompraLocal e salve-o na sessão.
+
+carrinho = (CarrinhoCompraLocal) req.getSession().getAttribute("ejb_stateful");
+
+if (carrinho == null) {
+   try {
+      Context contexto = new InitialContext();
+      carrinho = (CarrinhoCompraLocal) contexto.lookup("java:global/Atividade15/CarrinhoCompraStateful!ejb.CarrinhoCompraLocal");
+   } catch (NamingException e) {
+      throw new ServletException(e);
+   }
+   req.getSession().setAttribute("ejb_stateful", carrinho);
+}
+
+j) Execute novamente o projeto Atividade15 no servidor de aplicação. Chame a url do servlet passando um item como parâmetro. Qual foi o resultado?
+
+k) Interrompa a execução do projeto.
+
+l) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade15".
+
+m) Envie os arquivos versionados para o git remoto.

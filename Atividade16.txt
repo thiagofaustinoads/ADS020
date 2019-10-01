@@ -1,0 +1,57 @@
+1. Criar um projeto com JPA no NetBeans.
+
+a) Inicie os aplicativos Apache e MySQL através do XAMPP.
+
+b) No navegador carregue a URL http://localhost/phpmyadmin.
+
+c) Crie um banco de dados chamado agenda.
+
+d) Abra o aplicativo NetBeans IDE.
+
+e) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java e o projeto Aplicação Java. 
+
+f) Prossiga definindo o nome Atividade16 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Criar classe principal e finalize o assistente.
+
+g) Crie uma unidade de persistência através no menu Arquivo->Novo selecionando a categoria Persistência e o tipo Unidade de persistência. 
+
+h) Prossiga atribuindo o nome minhaPU a unidade de persitência. Escolha a biblioteca de persistência Hibernate e crie uma conexão para o banco agenda usando o driver MySQL.
+
+i) Importe a biblioteca JDBC para MySQL clicando com o botão direito sobre Bibliotecas.
+
+j) Crie um entidade através do menu Arquivo->Novo selecionando a categoria Persistência e o tipo Classe de entidade. Defina o nome Contato para a entidade e o nome entidades para o pacote.
+
+k) Defina na classe Contato os atributos nome e telefone com seus respectivos métodos getters e setters. Altere a estratégia do atributo Id para GenerationType.IDENTITY.
+
+l) Crie uma classe Java chamada ContatoDAO dentro do pacote dao. 
+
+m) Dentro da classe implemente o método persist() que deve receber com parâmetro uma instância de Contato (Dica: pressione ALT+INSERT e selecione utilizar gerenciador de unidades).
+
+n) Implemente o método merge() que deve receber como parâmetro uma instância de Contato. Faça ele chamar o método merge() da classe EntityManager (Dica: em.merge(contato);).
+
+o) Implemente o método remove() que deve receber como parâmetro uma instância de Contato. Faça ele chamar o método remove() da classe EntityManager (Dica: em.remove(contato);).
+
+p) Implemente o método find() que deve receber como parâmetro um id e retornar um instância de Contato. Faça ele chamar o método find() da classe EntitiyManager (Dica: em.find(Contato.classe, id);).
+
+q) Implemente o método list() que deve retornar uma instância de List<Contato>. Faça ele chamar o método select() da classe CriteriaQuery.
+
+CriteriaQuery cq = em.getCriteriaBuilder().craeteQuery();
+cq.select(cq.from(Contato.class));
+return em.createQuery(cq).getResultList();
+
+r) Cria uma classe Java chamada TestaJPA dentro do pacote padrão. Declare um método main().
+
+s) Dentro do método main() declare uma variável dao inicializando uma instância de ContatoDAO e uma variável contato inicializando uma instância de Contato. Atribuia valores as propriedades nome e telefone.
+
+t) Chame o método persist de dao passando como parâmetro a variável contato. Repita esse passo passando outras intâncias de Contato.
+
+u) Altere a propriedade nome de uma instância de Contato e chame o método merge() de dao.
+
+v) Remove um contato chamando o método remove() de dao passando como parâmetro o id.
+
+w) Localize contato chamando o método find() de dao passano como parâmetro o id. Imprima o retorno do método.
+
+x) Liste todos os contatos chamando o método list() de dado. Imprima a lista de contatos.
+
+y) Execute o projeto e verifique o resultado
+
+z) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto web Atividade16". Envie os arquivos versionados para o git remoto.

@@ -1,0 +1,60 @@
+1. Criar um Serviço Web no NetBeans.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
+
+c) Prossiga definindo o nome Atividade18 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Finalize o assistente.
+
+d) Crie um pacote ws acionando o botão direito sobre Pacotes de código fonte.
+
+e) No menu Arquivo escolha a opção Novo Arquivo. Selecione a categoria WebServices e o tipo Web Service. Defina o nome CalculadoraWS a nova classe e escolha o pacote ws.
+
+f) Declare o método somar que recebe dois parâmetros inteiros e retorne um inteiro. Atribua ao método a anotação @WebMethod com nome da operação somarInteiros. Atribua aos parâmetros a anotação @WebParam com os nomes operadorA e operadorB.
+
+@WebMethod(operationName = "somarInteiros")
+public int somar(@WebParam(name = "operadorA") int a, @WebParam(name = "operadorB") int b) {
+	return a + b;
+}
+
+g) Declare o método subtrair que recebe dois parâmetros inteiros e retorne um inteiro. Atribua ao método a anotação @WebMethod com nome da operação subtrairInteiros. Atribua aos parâmetros a anotação @WebParam com os nomes operadorA e operadorB.
+
+h) Declare o método multiplicar que recebe dois parâmetros inteiros e retorne um inteiro. Atribua ao método a anotação @WebMethod com nome da operação multiplicarInteiros. Atribua aos parâmetros a anotação @WebParam com os nomes operadorA e operadorB.
+
+i) Declare o método dividir que recebe dois parâmetros inteiros e retorne um inteiro. Atribua ao método a anotação @WebMethod com nome da operação dividirInteiros. Atribua aos parâmetros a anotação @WebParam com os nomes operadorA e operadorB.
+
+j) Clique com o botão direito sobre a classe CalculadoraWS e acione a opção Executar Arquivo.
+
+k) Acesse a URL http://localhost:8080/Atividade18/CalculadoraWS?wsdl. Qual foi o resultado.
+
+
+
+2) Criar um cliente do Serviço Web.
+
+a) No menu Arquivo escolha a opção Novo Arquivo. Selecione a categoria WebServices e o tipo Cliente para Web Service. Defina a URL do documento WSDL do serviço CalculadoraWS e o pacote cliente.
+
+b) Crie um pacote servlets acionando o botão direito sobre Pacotes de código fonte.
+
+c) Dentro do pacote crie um servlet acionando no menu Arquivo->Novo Arquivo. Selecione a categoria Web e o tipo Arquivo Servlet.
+
+d) Defina o nome ClienteCalculadoraWS ao servlet e o contexto /calculadora. Finalize o assistente.
+
+e) Dentro do método processoRequest() crie uma variável servico inicializando com a instância de CalculadoraWS_Servico.
+
+f) Crie uma variável calculadora do tipo cliente.CalculadoraWS incializando com o retorno do método getCalculadoraWSPort().
+        
+g) Chame cada um dos métodos da CalculadoraWS e imprima seu resultado.
+
+ out.println("2 + 2 é igual a " + calculadora.somarInteiros(2, 2) + "<br/>");
+ out.println("2 - 2 é igual a " + calculadora.subtrarInteiros(2, 2) + "<br/>");
+ out.println("2 x 2 é igual a " + calculadora.multiplicarInteiros(2, 2) + "<br/>");
+ out.println("2 / 2 é igual a " + calculadora.dividirInteiros(2, 2) + "<br/>");
+
+ 
+h) Interrompa o Wildfly limpando a pasta deployments. Execute novamente o projeto.
+
+i) Acione o servlet ClienteCalculadoraWS a partir da sua URL. Qual foi o resultado?
+
+j) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade18".
+
+k) Envie os arquivos versionados para o git remoto.
