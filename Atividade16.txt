@@ -4,7 +4,7 @@ a) Abra o aplicativo NetBeans IDE.
 
 b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java EE e o projeto Aplicação Corporativa (Enterprise).
 
-c) Prossiga definindo o nome Atividade15 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Usar Pasta Dedicada, se ela estiver selecionada.
+c) Prossiga definindo o nome Atividade16 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Usar Pasta Dedicada, se ela estiver selecionada.
 
 d) Prossiga escolhendo o servidor WildFly Application Server a como ambiente de execução. Defina o nome CarrinhoEJB ao módulo EJB e LojaVirtual ao módulo Web. Finalize o assistente.
 
@@ -118,6 +118,6 @@ j) Execute novamente o projeto Atividade15 no servidor de aplicação. Chame a u
 
 k) Interrompa a execução do projeto.
 
-l) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade15".
+l) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade16".
 
 m) Envie os arquivos versionados para o git remoto.
