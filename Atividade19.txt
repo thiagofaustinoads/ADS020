@@ -4,7 +4,7 @@ a) Abra o aplicativo NetBeans IDE.
 
 b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
 
-c) Prossiga definindo o nome Atividade18 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Finalize o assistente.
+c) Prossiga definindo o nome Atividade19 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Finalize o assistente.
 
 d) Crie um pacote ws acionando o botão direito sobre Pacotes de código fonte.
 
@@ -25,7 +25,7 @@ i) Declare o método dividir que recebe dois parâmetros inteiros e retorne um i
 
 j) Clique com o botão direito sobre a classe CalculadoraWS e acione a opção Executar Arquivo.
 
-k) Acesse a URL http://localhost:8080/Atividade18/CalculadoraWS?wsdl. Qual foi o resultado.
+k) Acesse a URL http://localhost:8080/Atividade19/CalculadoraWS?wsdl. Qual foi o resultado.
 
 
 
@@ -55,6 +55,6 @@ h) Interrompa o Wildfly limpando a pasta deployments. Execute novamente o projet
 
 i) Acione o servlet ClienteCalculadoraWS a partir da sua URL. Qual foi o resultado?
 
-j) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade18".
+j) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade19".
 
 k) Envie os arquivos versionados para o git remoto.
