@@ -4,7 +4,7 @@ a) Abra o aplicativo NetBeans IDE.
 
 b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java e o projeto Aplicação Java.
 
-c) Prossiga definindo o nome Atividade12 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque o item Criar Classe Principal e finalize o assistente.
+c) Prossiga definindo o nome Atividade11 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque o item Criar Classe Principal e finalize o assistente.
 
 d) No menu Arquivo escolha a opção Novo Arquivo. Selecione a Java e o tipo Interface. Defina o nome CalculadoraRemota a nova interface.
 
@@ -82,6 +82,6 @@ try {
 
 f) Clique com o botão direito sobre a classe CalculadoraServer e acione a opção Executar Arquivo. Qual foi o resultado?
 
-g) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade12".
+g) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade11".
 
 h) Envie os arquivos versionados para o git remoto.
