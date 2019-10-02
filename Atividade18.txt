@@ -4,11 +4,11 @@ a) Abra o aplicativo NetBeans IDE.
 
 b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java EE e o projeto Aplicação Corporativa (Enterprise).
 
-c) Prossiga definindo o nome Atividade17 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Usar Pasta Dedicada, se ela estiver selecionada.
+c) Prossiga definindo o nome Atividade18 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Usar Pasta Dedicada, se ela estiver selecionada.
 
 d) Prossiga escolhendo o servidor WildFly Application Server como ambiente de execução. Defina o nome CadastroEJB ao módulo EJB e CadastroWeb ao módulo Web. Faça o módulo Web importar o framework JSF. Finalize o assistente.
 
-e) Crie uma unidade de persistência cadastroPU que deve fazer referência ao datasource cadastroDS criado no WildFly. Caso não tenha criado o datasource refazer item 2 da Atividade13.
+e) Crie uma unidade de persistência cadastroPU que deve fazer referência ao datasource cadastroDS criado no WildFly. Caso não tenha criado o datasource refazer item 2 da Atividade12.
 
 f) No módulo EJB crie os pacotes entity e ejb.
 
@@ -26,6 +26,6 @@ l) Execute o projeto Atividade17 no servidor de aplicação. Chame a url da pagi
 
 m) Interrompa a execução do projeto.
 
-n) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade17".
+n) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade18".
 
 o) Envie os arquivos versionados para o git remoto.
