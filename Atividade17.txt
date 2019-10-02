@@ -10,7 +10,7 @@ d) Abra o aplicativo NetBeans IDE.
 
 e) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java e o projeto Aplicação Java. 
 
-f) Prossiga definindo o nome Atividade16 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Criar classe principal e finalize o assistente.
+f) Prossiga definindo o nome Atividade17 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Criar classe principal e finalize o assistente.
 
 g) Crie uma unidade de persistência através no menu Arquivo->Novo selecionando a categoria Persistência e o tipo Unidade de persistência. 
 
@@ -54,4 +54,4 @@ x) Liste todos os contatos chamando o método list() de dado. Imprima a lista de
 
 y) Execute o projeto e verifique o resultado
 
-z) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto web Atividade16". Envie os arquivos versionados para o git remoto.
+z) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto web Atividade17". Envie os arquivos versionados para o git remoto.
