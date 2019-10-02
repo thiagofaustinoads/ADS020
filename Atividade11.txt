@@ -1,0 +1,87 @@
+﻿1. Criar um servidor RMI.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java e o projeto Aplicação Java.
+
+c) Prossiga definindo o nome Atividade12 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque o item Criar Classe Principal e finalize o assistente.
+
+d) No menu Arquivo escolha a opção Novo Arquivo. Selecione a Java e o tipo Interface. Defina o nome CalculadoraRemota a nova interface.
+
+e) Faça a interface CalculadoraRemota estender a interface java.RMI.Remote.
+
+public interface CalculadoraRemota extends Remote { }
+
+f) Declare o método somar que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção java.RMI.RemoteException.
+
+int somar(int a, int b) throws RemoteException;
+
+g) Declare o método subtrair que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção java.RMI.RemoteException.
+
+h) Declare o método multiplicar que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção java.RMI.RemoteException.
+
+i) Declare o método dividir que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção java.RMI.RemoteException.
+
+j) Crie uma classe chamada CalculadoraServer. Faça ela extender a classe java.RMI.server.UnicastRemoteObject e implementar a interface CalculadoraRemota.
+
+public class CalculadoraServer extends UnicastRemoteObject implements CalculadoraRemota { }
+
+k) Implemente um construtor padrão que lance a exceção RemoteException.
+
+public CalculadoraServer() throws RemoteException { }
+
+l) Implemente os métodos da interface CalculadoraRemota na classe CalculadoraServer. Faça cada método retornar a operação matemática correspondente.
+
+m) Ainda na calsse CalculadoraServer, implemente um método estático main (Dica: digite psvm e pressinoe TAB).
+
+n) Dentro do método main, declare um objeto do tipo CalculadoraServer incializando com uma nova instância.
+
+o) Defina a porta 1099 para o serviço de registro do RMI.
+
+LocateRegistry.createRegistry(1099);
+
+p) Chame o método rebind() da classe java.RMI.Naming para registrar o objeto de CalculadoraServer. Faça o tratamento da exceção lançada pelo método.
+
+try {
+        LocateRegistry.createRegistry(1099);
+        Naming.rebind("CalculadoraServer", obj);
+        System.out.println("Calculadora ligada");
+} catch (Exception ex) {
+	System.err.println("Erro: " + ex.getMessage());
+}
+
+q) Clique com o botão direito sobre a classe CalculadoraServer e acione a opção Executar Arquivo.
+
+
+
+2) Criar um cliente RMI.
+
+a) Crie uma classe chamada CalculadoraClient.
+
+b) Dentro da classe declare um método main.
+
+c) Dentro do método main defina um objeto do tipo CalculadoraRemota inicializando-a com o resultado do método lookup() da classe java.RMI.Naming. 
+
+CalculadoraRemota obj = Naming.lookup("//127.0.0.1:1099/CalculadoraServer");
+        
+d) Chame cada um dos métodos da CalculadoraRemota e imprima seu resultado.
+
+System.out.println("2 + 2 é igual a " + obj.somar(2,2));
+System.out.println("2 - 2 é igual a " + obj.subtrair(2,2));
+System.out.println("2 x 2 é igual a " + obj.multiplicar(2,2));
+System.out.println("2 / 2 é igual a " + obj.dividir(2,2));
+ 
+e) Faça o tratamento da exceção lançada pelos métodos chamados.
+
+try {
+  ...
+
+} catch (Exception ex) {
+	System.err.println("Erro: " + ex.getMessage());
+}
+
+f) Clique com o botão direito sobre a classe CalculadoraServer e acione a opção Executar Arquivo. Qual foi o resultado?
+
+g) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade12".
+
+h) Envie os arquivos versionados para o git remoto.
