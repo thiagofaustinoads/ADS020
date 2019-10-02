@@ -1,4 +1,4 @@
-1. Criar um projeto EJB no NetBeans.
+1. Criar um projeto EJB no NetBeans. (ajustar para criar um EJB simples)
 
 a) Abra o aplicativo NetBeans IDE.
 
