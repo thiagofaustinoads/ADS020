@@ -22,7 +22,7 @@ j) Implemente o managedbean AlunoMB para responder as ações listar, incluir, a
 
 k) Implemente as páginas XHTML listar, incluir e alterar. Utilize componentes JSF panelGrid, dataTable, commanButton, commandLink.
 
-l) Execute o projeto Atividade17 no servidor de aplicação. Chame a url da pagina listar. Teste a inclusão, alteração e exclusão de aluno.s
+l) Execute o projeto no servidor de aplicação. Chame a url da pagina listar. Teste a inclusão, alteração e exclusão de aluno.s
 
 m) Interrompa a execução do projeto.
 
