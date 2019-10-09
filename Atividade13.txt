@@ -1,68 +1,74 @@
-1. Criar um projeto EJB no NetBeans. (ajustar para criar um EJB simples)
+1. Criar um projeto EJB no NetBeans.
 
 a) Abra o aplicativo NetBeans IDE.
 
-b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java EE e o projeto Modulo EJB.
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java EE e o projeto Aplicação Enterprise.
 
-c) Prossiga definindo o nome Atividade13 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque o item Criar Classe Principal e finalize o assistente.
+c) Prossiga definindo o nome Atividade13 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. 
 
-d) No menu Arquivo escolha a opção Novo Arquivo. Selecione a Java e o tipo Interface. Defina o nome CalculadoraRemota a nova interface.
+d) Prossiga escolhendo o Servidor WilFly Application Server e a versão JEE 7. Finalize o assistente. 
 
-e) Faça a interface CalculadoraRemota ser uma interface javax.ejb.Remote (Dica: @Remote).
+e) Crie um pacote ejb através do menu Arquivo->Novo Arquivo. 
 
-f) Declare o método somar que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção javax.ejb.EJBException.
+f) Dentro do pacote crie uma interface Java CalculadoraRemota.
+
+g) Faça a interface CalculadoraRemota ser uma interface javax.ejb.Remote (Dica: acrescentar a anotação @Remote).
+
+h) Declare o método somar que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção javax.ejb.EJBException.
 
 int somar(int a, int b) throws EJBException;
 
-g) Declare o método subtrair que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção javax.ejb.EJBException.
+i) Declare o método subtrair que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção javax.ejb.EJBException.
 
-h) Declare o método multiplicar que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção javax.ejb.EJBException.
+j) Declare o método multiplicar que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção javax.ejb.EJBException.
 
-i) Declare o método dividir que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção javax.ejb.EJBException.
+k) Declare o método dividir que recebe dois parâmetros inteiros e retorne um inteiro. Faça o método lançar uma exceção javax.ejb.EJBException.
 
-j) Crie uma classe chamada CalculadoraEJB. Faça ela implementar a interface CalculadoraRemota.
+l) Crie uma classe chamada CalculadoraEJB. Faça ela implementar a interface CalculadoraRemota.
 
 @Stateless
 @Remote(CalculadoraRemota.class)
 public class CalculadoraServer implements CalculadoraRemota { }
 
-k) Implemente um construtor padrão que lance a exceção EJBException.
+m) Implemente um construtor padrão que lance a exceção EJBException.
 
 public CalculadoraEJB() throws EJBException { }
 
-l) Implemente os métodos da interface CalculadoraRemota na classe CalculadoraEJB. Faça cada método retornar a operação matemática correspondente.
+n) Implemente os métodos da interface CalculadoraRemota na classe CalculadoraEJB. Faça cada método retornar a operação matemática correspondente.
 
-m) Clique com o botão direito sobre a classe CalculadoraEJB e acione a opção Executar Arquivo.
+o) No menu Executar acione a opção Executar Projeto. Qual foi o resultado?
 
 
 
-2) Criar um cliente EJB.
+2) Criar um cliente EJB no NetBeans.
 
-a) Crie uma classe chamada CalculadoraClient.
+a) Crie um pacote chamado client.
 
-b) Dentro da classe declare um método main.
+b) Dentro do pacote cliente crie uma classe Java chamada CalculadoraClient.
 
-c) Dentro do método main defina um objeto do tipo java.util.Properties inicializado-a com uma nova instância da classe. Configure a propriedade URL_PKG_PREFIXES para obter o nome JNDI padrão WildFly. 
+c) Dentro da classe declare um método main.
+
+d) Dentro do método main defina um objeto do tipo java.util.Properties inicializado-a com uma nova instância da classe. Configure a propriedade URL_PKG_PREFIXES para obter o nome JNDI padrão WildFly. 
 
 Properties jndiProperties = new Properties();
 jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 
-d) Crie um objeto do tipo javax.naming.Context inicializando-o com uma instância de InitialContext.
+e) Crie um objeto do tipo javax.naming.Context inicializando-o com uma instância de InitialContext.
 
 Context context = new InitialContext(jndiProperties);
 
-e) Crie um objeto da CalculadoraRemote inicializando com o retorno do método lookup() de context.
+f) Crie um objeto da CalculadoraRemote inicializando com o retorno do método lookup() de context.
 
-CalculadoraRemota ejb = (CalculadoraRemota) context.lookup("ejb:/Atividade14//CalculadoraRemota!CalculadoraRemota");
+CalculadoraRemota ejb = (CalculadoraRemota) context.lookup("ejb:/Atividade13//CalculadoraRemota!CalculadoraRemota");
         
-f) Chame cada um dos métodos da CalculadoraRemota e imprima seu resultado.
+g) Chame cada um dos métodos da CalculadoraRemota e imprima seu resultado.
 
 System.out.println("2 + 2 é igual a " + ejb.somar(2,2));
 System.out.println("2 - 2 é igual a " + ejb.subtrair(2,2));
 System.out.println("2 x 2 é igual a " + ejb.multiplicar(2,2));
 System.out.println("2 / 2 é igual a " + ejb.dividir(2,2));
  
-g) Faça o tratamento da exceção lançada pelos métodos chamados.
+h) Faça o tratamento da exceção lançada pelos métodos chamados.
 
 try {
   ...
@@ -70,8 +76,8 @@ try {
   System.err.println("Falha ao chamar o objeto remoto.\n" + e.getMessage());
 }
 
-h) Clique com o botão direito sobre a classe CalculadoraClient e acione a opção Executar Arquivo. Qual foi o resultado?
+i) Clique com o botão direito sobre a classe CalculadoraClient e acione a opção Executar Arquivo. Qual foi o resultado?
 
-i) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade13".
+j) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade13".
 
-j) Envie os arquivos versionados para o git remoto.
+k) Envie os arquivos versionados para o git remoto.
