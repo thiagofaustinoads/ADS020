@@ -2,56 +2,54 @@
 
 a) Inicie os aplicativos Apache e MySQL através do XAMPP.
 
-b) No navegador carregue a URL http://localhost/phpmyadmin.
+b) No navegador carregue a URL http://localhost/phpmyadmin e crie um banco de dados chamado agenda.
 
-c) Crie um banco de dados chamado agenda.
+c) Abra o aplicativo NetBeans IDE e crie um novo projeto. Selecione a categoria Java e o projeto Aplicação Java. 
 
-d) Abra o aplicativo NetBeans IDE.
+d) Prossiga definindo o nome Atividade17 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Criar classe principal e finalize o assistente.
 
-e) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java e o projeto Aplicação Java. 
+e) Crie uma unidade de persistência através no menu Arquivo->Novo selecionando a categoria Persistência e o tipo Unidade de persistência. 
 
-f) Prossiga definindo o nome Atividade17 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. Desmarque a opção Criar classe principal e finalize o assistente.
+f) Prossiga atribuindo o nome minhaPU a unidade de persitência. Escolha a biblioteca de persistência Hibernate e crie uma conexão para o banco agenda usando o driver MySQL.
 
-g) Crie uma unidade de persistência através no menu Arquivo->Novo selecionando a categoria Persistência e o tipo Unidade de persistência. 
+g) Importe a biblioteca JDBC para MySQL clicando com o botão direito sobre Bibliotecas.
 
-h) Prossiga atribuindo o nome minhaPU a unidade de persitência. Escolha a biblioteca de persistência Hibernate e crie uma conexão para o banco agenda usando o driver MySQL.
+h) Crie um entidade através do menu Arquivo->Novo selecionando a categoria Persistência e o tipo Classe de entidade. Defina o nome Contato para a entidade e o nome entidades para o pacote.
 
-i) Importe a biblioteca JDBC para MySQL clicando com o botão direito sobre Bibliotecas.
+i) Defina na classe Contato os atributos nome e telefone com seus respectivos métodos getters e setters. Altere a estratégia do atributo Id para GenerationType.IDENTITY.
 
-j) Crie um entidade através do menu Arquivo->Novo selecionando a categoria Persistência e o tipo Classe de entidade. Defina o nome Contato para a entidade e o nome entidades para o pacote.
+j) Crie uma classe Java chamada ContatoDAO dentro do pacote dao. 
 
-k) Defina na classe Contato os atributos nome e telefone com seus respectivos métodos getters e setters. Altere a estratégia do atributo Id para GenerationType.IDENTITY.
+k) Dentro da classe implemente o método persist() que deve receber com parâmetro uma instância de Contato (Dica: pressione ALT+INSERT e selecione utilizar gerenciador de unidades).
 
-l) Crie uma classe Java chamada ContatoDAO dentro do pacote dao. 
+l) Implemente o método merge() que deve receber como parâmetro uma instância de Contato. Faça ele chamar o método merge() da classe EntityManager (Dica: em.merge(contato);).
 
-m) Dentro da classe implemente o método persist() que deve receber com parâmetro uma instância de Contato (Dica: pressione ALT+INSERT e selecione utilizar gerenciador de unidades).
+m) Implemente o método remove() que deve receber como parâmetro uma instância de Contato. Faça ele chamar o método remove() da classe EntityManager (Dica: em.remove(contato);).
 
-n) Implemente o método merge() que deve receber como parâmetro uma instância de Contato. Faça ele chamar o método merge() da classe EntityManager (Dica: em.merge(contato);).
+n) Implemente o método find() que deve receber como parâmetro um id e retornar um instância de Contato. Faça ele chamar o método find() da classe EntitiyManager (Dica: em.find(Contato.classe, id);).
 
-o) Implemente o método remove() que deve receber como parâmetro uma instância de Contato. Faça ele chamar o método remove() da classe EntityManager (Dica: em.remove(contato);).
-
-p) Implemente o método find() que deve receber como parâmetro um id e retornar um instância de Contato. Faça ele chamar o método find() da classe EntitiyManager (Dica: em.find(Contato.classe, id);).
-
-q) Implemente o método list() que deve retornar uma instância de List<Contato>. Faça ele chamar o método select() da classe CriteriaQuery.
+o) Implemente o método list() que deve retornar uma instância de List<Contato>. Faça ele chamar o método select() da classe CriteriaQuery.
 
 CriteriaQuery cq = em.getCriteriaBuilder().craeteQuery();
 cq.select(cq.from(Contato.class));
 return em.createQuery(cq).getResultList();
 
-r) Cria uma classe Java chamada TestaJPA dentro do pacote padrão. Declare um método main().
+p) Cria uma classe Java chamada TestaJPA dentro do pacote padrão. Declare um método main().
 
-s) Dentro do método main() declare uma variável dao inicializando uma instância de ContatoDAO e uma variável contato inicializando uma instância de Contato. Atribuia valores as propriedades nome e telefone.
+q) Dentro do método main() declare uma variável dao inicializando uma instância de ContatoDAO e uma variável contato inicializando uma instância de Contato. Atribuia valores as propriedades nome e telefone.
 
-t) Chame o método persist de dao passando como parâmetro a variável contato. Repita esse passo passando outras intâncias de Contato.
+r) Chame o método persist de dao passando como parâmetro a variável contato. Repita esse passo passando outras intâncias de Contato.
 
-u) Altere a propriedade nome de uma instância de Contato e chame o método merge() de dao.
+s) Altere a propriedade nome de uma instância de Contato e chame o método merge() de dao.
 
-v) Remove um contato chamando o método remove() de dao passando como parâmetro o id.
+t) Remove um contato chamando o método remove() de dao passando como parâmetro o id.
 
-w) Localize contato chamando o método find() de dao passano como parâmetro o id. Imprima o retorno do método.
+u) Localize contato chamando o método find() de dao passano como parâmetro o id. Imprima o retorno do método.
 
-x) Liste todos os contatos chamando o método list() de dado. Imprima a lista de contatos.
+v) Liste todos os contatos chamando o método list() de dado. Imprima a lista de contatos.
 
-y) Execute o projeto e verifique o resultado
+w) Execute o projeto e verifique o resultado.
 
-z) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto web Atividade17". Envie os arquivos versionados para o git remoto.
+x) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto web Atividade17". 
+
+y) Envie os arquivos versionados para o git remoto.
