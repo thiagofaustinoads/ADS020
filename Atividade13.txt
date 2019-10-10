@@ -76,8 +76,18 @@ try {
   System.err.println("Falha ao chamar o objeto remoto.\n" + e.getMessage());
 }
 
-i) Clique com o botão direito sobre a classe CalculadoraClient e acione a opção Executar Arquivo. Qual foi o resultado?
+i) Crie um arquivo de propriedades jboss-ejb-client.properties no Pacotes de Código-Fonte. Altere o conteúdo do arquivo para conter as seguintes linhas.
 
-j) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade13".
+remote.connectionprovider.create.options.org.xnio.Options.SSL_ENABLED=false
+remote.connections=default
+remote.connection.default.host=localhost
+remote.connection.default.port = 8090
+remote.connection.default.connect.options.org.xnio.Options.SASL_POLICY_NOANONYMOUS=false
 
-k) Envie os arquivos versionados para o git remoto.
+j) Adicione a biblioteca jboss-client.jar localizada na pasta JEE\WILDFLY\bin\client\
+
+k) Clique com o botão direito sobre a classe CalculadoraClient e acione a opção Executar Arquivo. Qual foi o resultado?
+
+l) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade13".
+
+m) Envie os arquivos versionados para o git remoto.
