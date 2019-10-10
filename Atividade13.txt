@@ -2,7 +2,7 @@
 
 a) Abra o aplicativo NetBeans IDE.
 
-b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java EE e o projeto Aplicação Enterprise.
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java EE e o projeto Modulo EJB.
 
 c) Prossiga definindo o nome Atividade13 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. 
 
