@@ -37,10 +37,10 @@ q) Declare um construtor padrão para a classe ControladorMB que imprima a mensa
 r) Altere o corpo da página index.xhtml para exibir um texto "Stateful foi executado x vez(es)" cujo valor de x é obtido após chamar o método invocar() de ejb.
 
 <h:body>
-   <h2>Stateful foi executado <h:outputText value="#{controladorMB.ejb.invocar}"/> vez(es)</h2>
+   <h2>Stateful foi executado <h:outputText value="#{controladorMB.ejb.invocar()}"/> vez(es)</h2>
 </h:body>
 
-s) No menu Executar acione a opção Executar Projeto. Qual foi o resultado?
+s) No menu Executar acione a opção Executar Projeto. Carrega a página http://localhost:8090/Atividade15/ em navegadores diferentes. Qual foi o resultado?
 
 t) Recaregue varias vezes as página exibida no navegador e interrompa a execução do WildFly. Quais foram as mensagens exibidas pelo projeto na console do NetBeans?
 
