@@ -1,1 +1,45 @@
-1. Criar o ciclo de vida da Stateless
+1. Criar o ciclo de vida da Stateless.
+
+a) Abra o aplicativo NetBeans IDE.
+
+b) No menu Arquivo escolha a opção Novo Projeto. Selecione a categoria Java Web e o projeto Aplicação Web.
+
+c) Prossiga definindo o nome Atividade14 ao projeto. Verifique se a localização do projeto está indicando a pasta ADS020. Senão estiver, localize-a acionando Procurar. 
+
+d) Escolha o servidor WildFly Application Server como ambiente de execução. Marque o framework JavaServer Faces e finalize o assistente.
+
+e) Crie um pacote ejb dentro de Pacotes de Codigo-Fonte. 
+
+f) Dentro do pacote crie uma classe Java StatelessEJB que implementa a interface Serializable. Atribua à classe a anotação @Stateless.
+
+g) Declare um atributo privado contador do tipo int inicializando com zero.
+
+h) Declare um construtor padrão para a classe StatelessEJB que deva imprimir na console a mensagem "Criando o stateless...".
+
+i) Declare um método invocar que deva imprimir na console a mensagem "Invocando o stateless..." e retorne o valor de ++contador.  
+
+j) Declare um método iniciar que deva imprimir na console a mensagem "Iniciando o stateless...". Atribua ao método a anotação @PostConstruct.
+
+k) Declare um método finalizar que deve imprimir na console a mensagem "Finalizando o stateless...". Atribua ao método a anotação @PreDestroy.
+
+l) Crie um pacote managedbean de dentro de Pacotes de Codigo-Fonte.
+
+m) Dentro do pacote crie uma classe Java ControladorMB que implementa a interface Serializable. Atribua à classe a anotação @Named contendo a propriedade value igual a "controladorMB". Atribua também a anotação @RequestScoped do pacote javax.entreprise.context.
+
+n) Declare um atributo privado ejb do tipo StatelssEJB. Atribua ao atributo a anotação EJB. Crie os métodos getter e setter para o atributo. 
+
+o) Declare um construtor padrão para a classe ControladorMB que imprima a mensagem "Criando o controlador..."
+
+p) Altere o corpo da página index.xhtml para exibir um texto "Stateless foi executado x vez(es)" cujo valor de x é obtido após chamar o método invocar() de ejb.
+
+<h:body>
+   <h2>Stateless foi executado <h:outputText value="#{controladorMB.ejb.invocar}"/> vez(es)</h2>
+</h:body>
+
+q) No menu Executar acione a opção Executar Projeto. Qual foi o resultado?
+
+r) Recaregue varias vezes as página exibida no navegador e interrompa a execução do WildFly. Quais foram as mensagens exibidas pelo projeto na console do NetBeans?
+
+s) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade14".
+
+t) Envie os arquivos versionados para o git remoto.
