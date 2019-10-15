@@ -36,7 +36,7 @@ p) Altere o corpo da página index.xhtml para exibir um texto "Stateless foi exe
    <h2>Stateless foi executado <h:outputText value="#{controladorMB.ejb.invocar()}"/> vez(es)</h2>
 </h:body>
 
-q) No menu Executar acione a opção Executar Projeto. Qual foi o resultado?
+q) No menu Executar acione a opção Executar Projeto. Carrega a página http://localhost:8090/Atividade14/ em navegadores diferentes? Qual foi o resultado?
 
 r) Recaregue varias vezes as página exibida no navegador e interrompa a execução do WildFly. Quais foram as mensagens exibidas pelo projeto na console do NetBeans?
 
