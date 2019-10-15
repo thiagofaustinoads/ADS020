@@ -33,7 +33,7 @@ o) Declare um construtor padrão para a classe ControladorMB que imprima a mensa
 p) Altere o corpo da página index.xhtml para exibir um texto "Stateless foi executado x vez(es)" cujo valor de x é obtido após chamar o método invocar() de ejb.
 
 <h:body>
-   <h2>Stateless foi executado <h:outputText value="#{controladorMB.ejb.invocar}"/> vez(es)</h2>
+   <h2>Stateless foi executado <h:outputText value="#{controladorMB.ejb.invocar()}"/> vez(es)</h2>
 </h:body>
 
 q) No menu Executar acione a opção Executar Projeto. Qual foi o resultado?
