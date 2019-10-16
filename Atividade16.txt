@@ -71,7 +71,7 @@ for(String item : lista) {
   out.println("<p>" + item + "</p>");
 }
 
-f) Execute o projeto Atividade15 no servidor de aplicação. Chame a url do servlet passando um item como parâmetro. Qual foi o resultado?
+f) Execute o projeto Atividade16 no servidor de aplicação. Chame a url do servlet passando um item como parâmetro. Qual foi o resultado?
 
 g) Interrompa a execução do projeto.
 
@@ -100,21 +100,21 @@ g) Faça o método listarItens() retornar o atributo lista.
 
 h) Remova a anotaçao @EJB do atributo carrinho na classe AdicionarItemCarrinhoServlet.
 
-i) Acrescete no método processRequest() do servlet para que seja localizado o carrinho na sessão. Se ele não existe, localize-o pelo contexto java:global/Atividade15/CarrinhoCompraStateful!ejb.CarrinhoCompraLocal e salve-o na sessão.
+i) Acrescete no método processRequest() do servlet para que seja localizado o carrinho na sessão. Se ele não existe, localize-o pelo contexto java:global/Atividade16/CarrinhoCompraStateful!ejb.CarrinhoCompraLocal e salve-o na sessão.
 
 carrinho = (CarrinhoCompraLocal) req.getSession().getAttribute("ejb_stateful");
 
 if (carrinho == null) {
    try {
       Context contexto = new InitialContext();
-      carrinho = (CarrinhoCompraLocal) contexto.lookup("java:global/Atividade15/CarrinhoCompraStateful!ejb.CarrinhoCompraLocal");
+      carrinho = (CarrinhoCompraLocal) contexto.lookup("java:global/Atividade16/CarrinhoCompraStateful!ejb.CarrinhoCompraLocal");
    } catch (NamingException e) {
       throw new ServletException(e);
    }
    req.getSession().setAttribute("ejb_stateful", carrinho);
 }
 
-j) Execute novamente o projeto Atividade15 no servidor de aplicação. Chame a url do servlet passando um item como parâmetro. Qual foi o resultado?
+j) Execute novamente o projeto Atividade16 no servidor de aplicação. Chame a url do servlet passando um item como parâmetro. Qual foi o resultado?
 
 k) Interrompa a execução do projeto.
 
