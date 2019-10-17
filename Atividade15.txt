@@ -44,6 +44,10 @@ s) No menu Executar acione a opção Executar Projeto. Carrega a página http://
 
 t) Recaregue varias vezes as página exibida no navegador e interrompa a execução do WildFly. Quais foram as mensagens exibidas pelo projeto na console do NetBeans?
 
-u) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade15".
+u) Atribua a anotação @SessionScoped do pacote javax.entreprise.context a classe ControladorMB.
 
-v) Envie os arquivos versionados para o git remoto.
+v) Recaregue varias vezes as página exibida no navegador e interrompa a execução do WildFly. Quais foram as mensagens exibidas pelo projeto na console do NetBeans?
+
+x) Adicione os arquivos no git local e faça o commit com o comentário "Criando projeto Atividade15".
+
+y) Envie os arquivos versionados para o git remoto.
