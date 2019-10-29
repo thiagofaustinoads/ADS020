@@ -20,7 +20,7 @@ i) Defina na classe Contato os atributos nome e telefone com seus respectivos m�
 
 j) Crie uma classe Java chamada ContatoDAO dentro do pacote dao. 
 
-k) Dentro da classe implemente o método persist() que deve receber com parâmetro uma instância de Contato (Dica: pressione ALT+INSERT e selecione utilizar gerenciador de unidades).
+k) Dentro da classe implemente o método persist() que deve receber com parâmetro uma instância de Contato (Dica: pressione ALT+INSERT e selecione utilizar gerenciador de entidades).
 
 l) Implemente o método merge() que deve receber como parâmetro uma instância de Contato. Faça ele chamar o método merge() da classe EntityManager (Dica: em.merge(contato);).
 
