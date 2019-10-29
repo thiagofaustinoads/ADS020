@@ -12,17 +12,17 @@ e) Crie uma unidade de persistência cadastroPU que deve fazer referência ao da
 
 f) No módulo EJB crie os pacotes entity e ejb.
 
-g) Implemente a entity Aluno no pacote entity mapeando com a tabela alunos do banco cadastro.
+g) Implemente a entity Aluno no pacote entity mapeando com a tabela alunos do banco cadastro (Dica: clique o botão direito sobre entity em seguida selecione Novo->Classe de Entidade do Banco de Dados).
 
-h) Implemente o ejb statelss AlunoEJB no pacote ejb que deve conter os métodos incluir, alterar, excluir, consultar e listar. Injete a unidade de persistência para instanciar a classe EntityManager do JPA.
+h) Implemente o ejb statelss AlunoEJB no pacote ejb que deve conter os métodos incluir, alterar, excluir, consultar e listar. Injete a unidade de persistência para instanciar a classe EntityManager do JPA (Dica: clique o botão direito sobre ejb em seguida selecione Novo->Bean de Sessão para Classes de Entidade).
 
 i) No módulo Web crie o pacote managedbean.
 
-j) Implemente o managedbean AlunoMB para responder as ações listar, incluir, alterar e excluir.
+j) Implemente o managedbean AlunoMB para responder as ações listar, incluir, alterar e excluir (Dica: siga os passos da Atividade 10).
 
 k) Implemente as páginas XHTML listar, incluir e alterar. Utilize componentes JSF panelGrid, dataTable, commanButton, commandLink.
 
-l) Execute o projeto no servidor de aplicação. Chame a url da pagina listar. Teste a inclusão, alteração e exclusão de aluno.s
+l) Execute o projeto no servidor de aplicação. Chame a url da pagina listar. Teste a inclusão, alteração e exclusão de alunos.
 
 m) Interrompa a execução do projeto.
 
