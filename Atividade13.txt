@@ -28,7 +28,7 @@ l) Crie uma classe chamada CalculadoraEJB. Faça ela implementar a interface Cal
 
 @Stateless
 @Remote(CalculadoraRemota.class)
-public class CalculadoraServer implements CalculadoraRemota { }
+public class CalculadoraEJB implements CalculadoraRemota { }
 
 m) Implemente um construtor padrão que lance a exceção EJBException.
 
