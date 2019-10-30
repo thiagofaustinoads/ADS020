@@ -12,7 +12,7 @@ e) Crie uma unidade de persistência através no menu Arquivo->Novo selecionando
 
 f) Prossiga atribuindo o nome minhaPU a unidade de persitência. Escolha a biblioteca de persistência Hibernate e crie uma conexão para o banco agenda usando o driver MySQL.
 
-g) Importe a biblioteca JDBC para MySQL clicando com o botão direito sobre Bibliotecas.
+g) Importe a biblioteca JDBC para MySQL clicando com o botão direito sobre Bibliotecas. Também importe a biblioteca jandex-2.0.5.Final.jar (Dica: o arquivo encontra-se na pasta JEE\WILDFLY\modules\system\layers\base\org\jboss\jandex\main).
 
 h) Crie um entidade através do menu Arquivo->Novo selecionando a categoria Persistência e o tipo Classe de entidade. Defina o nome Contato para a entidade e o nome entidades para o pacote.
 
