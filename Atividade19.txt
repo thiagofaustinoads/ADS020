@@ -23,9 +23,9 @@ h) Declare o método multiplicar que recebe dois parâmetros inteiros e retorne 
 
 i) Declare o método dividir que recebe dois parâmetros inteiros e retorne um inteiro. Atribua ao método a anotação @WebMethod com nome da operação dividirInteiros. Atribua aos parâmetros a anotação @WebParam com os nomes operadorA e operadorB.
 
-j) Clique com o botão direito sobre a classe CalculadoraWS e acione a opção Executar Arquivo.
+j) Clique com o botão direito sobre o projeto Atividade19 e acione a opção Implantar.
 
-k) Acesse a URL http://localhost:8080/Atividade19/CalculadoraWS?wsdl. Qual foi o resultado.
+k) Acesse a URL http://localhost:8090/Atividade19/CalculadoraWS?wsdl. Qual foi o resultado.
 
 
 
