@@ -14,8 +14,6 @@ public class SessaoServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        request.getSession();
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -27,14 +25,14 @@ public class SessaoServlet extends HttpServlet {
             out.println("<title>Servlet SessaoServlet</title>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<h1>Servlet SessaoServlet at " + request.getContextPath() + "</h1>");
+            HttpSession session = request.getSession();
             out.println("SESSION_ID=" + session.getId());
             String nome = request.getParameter("nome");
             if (nome != null && nome.isEmpty() == false) {
                 session.setAttribute("nome", nome);
             }
             out.println("Nome salvo na sessão: " + session.getAttribute("nome"));
-        
-            out.println("<h1>Servlet SessaoServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
